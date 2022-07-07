@@ -2,7 +2,9 @@
   <div class="registration">
     <PageRegistration></PageRegistration>
     <ButtonsComp>Registration</ButtonsComp>
-    <InputComp></InputComp>
+    <InputComp
+        :placehold=text 
+    ></InputComp>
   </div>
 </template>
 
@@ -18,6 +20,12 @@ export default {
     PageRegistration,
     ButtonsComp,
     InputComp
+  },
+
+  data() {
+    return {
+        text: "Hello There!"
+    }
   }
 }
 </script>

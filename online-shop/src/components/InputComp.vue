@@ -2,12 +2,37 @@
     <div class="input">
         <slot class="label">Label</slot> 
         <br>
-        <input class="inputField" v-model="userInput" @input="sendInput">
+        <input class="inputField" :type="inputType" v-model="userInput" @input="sendInput" :placeholder="[[placehold]]" style="color=black;">
     </div>
 </template>
 
 <script>
     export default {
+        props: {
+            fieldRequired: {
+                type: Boolean,
+                required: true
+            },
+
+            typeOfInput: {
+                type: String,
+                required: false,
+                default: "String"
+            },
+
+            placehold: {
+                type: String,
+                required: false,
+                default: "Input"
+            },
+
+            inputType: { 
+                type: String,
+                required: false,
+                default: "text"
+            }
+        },
+
         data() {
             return {
                 userInput: '',
@@ -42,7 +67,10 @@
         border-radius: 10px;
         border-width: 2px;
         background-color: rgb(81, 103, 245);
-        color:rgb(128, 226, 16);
+    }
+
+    ::placeholder {
+        color: black;
     }
 
     .label {
