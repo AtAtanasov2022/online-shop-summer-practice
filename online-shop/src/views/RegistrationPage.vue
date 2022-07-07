@@ -5,6 +5,8 @@
     <InputComp
         :placehold=text 
     ></InputComp>
+    <DropDown></DropDown>
+    
   </div>
 </template>
 
@@ -13,13 +15,15 @@
 import PageRegistration from '@/components/PageRegistration.vue'
 import ButtonsComp from "../components/ButtonsComp.vue";
 import InputComp from "../components/InputComp.vue";
+import DropDown from "../components/DropDown.vue";
 
 export default {
   name: 'RegistrationPage',
   components: {
     PageRegistration,
     ButtonsComp,
-    InputComp
+    InputComp,
+    DropDown
   },
 
   data() {
