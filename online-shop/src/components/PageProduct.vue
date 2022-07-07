@@ -9,6 +9,8 @@
         <p>Shipping info: {{product.shippingInfo}}</p>
         <p>Availability: {{product.availability}}</p>
         <p>Customer rating: {{product.rating}}</p>
+
+        <button>Add to cart</button>
     </div>
 </template>
 

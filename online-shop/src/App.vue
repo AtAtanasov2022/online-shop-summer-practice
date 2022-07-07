@@ -18,6 +18,11 @@
 
 nav {
   padding: 30px;
+  background-color: rgb(18, 115, 218);
+  border: 1px;
+  border-radius: 40%;
+  width: 60%;
+  margin-left: 17%;
 
   a {
     font-weight: bold;
