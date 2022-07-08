@@ -1,7 +1,7 @@
 <template>
     <div>
-        <select class="dropdown" v-for="(dropDownOption, index, key) in dropDownOptions" v-model="dropDownOption.selectedOption" :key="key">
-            <option v-for="(option, index, key) in options" :value="option" :key="key"></option>
+        <select class="dropdown" v-for="dropdown in dropDownOptions" v-model="dropdown.selectedOption" :key="dropdown.index">
+            <option v-for="(option, index) in dropdown.options" :value="option" :key="index">{{option}}</option>
         </select>
     </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 <style>
     .dropdown{
         margin-top: 10px;
-        width: 5%;
+        width: 15%;
         border-color: rgb(1, 0, 2);
         border-radius: 10px;
         border-width: 2px;
