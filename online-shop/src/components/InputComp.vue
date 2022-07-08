@@ -14,12 +14,6 @@
                 required: true
             },
 
-            typeOfInput: {
-                type: String,
-                required: false,
-                default: "String"
-            },
-
             placehold: {
                 type: String,
                 required: false,
@@ -41,7 +35,8 @@
 
         methods: {
             sendInput() {
-                return this.$emit('sended-input', this.sendInput);
+                console.log(this.userInput);
+                return this.$emit('sended-input', this.userInput);
             }
         }
     }
