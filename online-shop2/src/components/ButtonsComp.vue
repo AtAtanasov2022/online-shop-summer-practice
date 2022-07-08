@@ -1,7 +1,10 @@
 <template>
-    <button class="button">
-        <slot>Click me!</slot>
-    </button>
+    <v-btn
+        color="secondary"
+        elevation="6"
+    >
+        <slot>Here!Click!</slot>
+    </v-btn>
 </template>
 
 <script>
