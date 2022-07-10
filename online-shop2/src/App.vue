@@ -52,7 +52,7 @@ export default {
   .home {
     width: 7%;
     border: 2%;
-    border-radius: 25%;
+    border-radius: 30%;
     background-color: #777672;
     margin-right:2%;
   }

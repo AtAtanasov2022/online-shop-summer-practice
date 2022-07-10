@@ -16,3 +16,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .login {
+    width: 100%;
+    height: 100%;
+    border-radius: 0%;
+    background-color: white;
+  }
+</style>
