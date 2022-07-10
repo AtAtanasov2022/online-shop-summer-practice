@@ -1,8 +1,10 @@
 <template>
   <v-app>
     <div class="navbar">
+      <img src="./assets/myShopLogoFinal.png" alt="MyShop" style="width: 3%; height: 80%; display: flex; justify-content: flex-start; margin-right: 67%; border-radius: 40%;">
+      
       <div class="login">
-        <router-link to="/login" class="logintwo" >Login</router-link>
+        <router-link to="/login" class="logintwo">Login</router-link>
       </div>
       <div class="registration">
         <router-link to="/registration" class="registrationtwo" style="text-decoration: none; color:black; color:whitesmoke; font-size: 1vw;">Registration</router-link> 
@@ -50,9 +52,10 @@ export default {
   .login,
   .registration,
   .home {
+    height: 75%;
     width: 7%;
     border: 2%;
-    border-radius: 30%;
+    border-radius: 60%;
     background-color: #777672;
     margin-right:2%;
   }
@@ -64,6 +67,7 @@ export default {
     color:black; 
     color:whitesmoke; 
     font-size: 1vw;
+    line-height: 250%;
   }
 
   .registrationtwo {
@@ -72,5 +76,6 @@ export default {
     color:black; 
     color:whitesmoke; 
     font-size: 1vw;
+    line-height: 250%;
   }
 </style>
