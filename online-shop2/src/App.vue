@@ -1,9 +1,15 @@
 <template>
   <v-app>
     <div class="navbar">
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/registration">Registration</router-link> |
-      <router-link to="/">Home</router-link> 
+      <div class="login">
+        <router-link to="/login" class="logintwo" >Login</router-link>
+      </div>
+      <div class="registration">
+        <router-link to="/registration" class="registrationtwo" style="text-decoration: none; color:black; color:whitesmoke; font-size: 1vw;">Registration</router-link> 
+      </div>
+      <div class="home">
+        <router-link to="/" class="hometwo" style="text-decoration: none; color:whitesmoke; font-size: 1vw;">Home</router-link> 
+      </div>
     </div>
     
     <v-main>
@@ -23,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
   .navbar{
     height: 5%;
     width: 100%;
@@ -39,5 +45,32 @@ export default {
     width: 3%;
     height: 3%;
     justify-content: right;
+  }
+
+  .login,
+  .registration,
+  .home {
+    width: 7%;
+    border: 2%;
+    border-radius: 25%;
+    background-color: #777672;
+    margin-right:2%;
+  }
+
+  .logintwo,
+  .hometwo {
+    margin-left: 30%;
+    text-decoration: none; 
+    color:black; 
+    color:whitesmoke; 
+    font-size: 1vw;
+  }
+
+  .registrationtwo {
+    margin-left: 12%;
+    text-decoration: none; 
+    color:black; 
+    color:whitesmoke; 
+    font-size: 1vw;
   }
 </style>
