@@ -1,5 +1,5 @@
 <template>
-  <div class="registration" v-if="showComp">
+  <div class="logout" v-if="!showComp">
       <FormComp
       ></FormComp>
   </div>
@@ -7,21 +7,13 @@
 
 <script>
 // @ is an alias to /src
-//import ButtonsComp from "../components/ButtonsComp.vue";
-import FormComp from "../components/FormComp.vue";
 import store from '@/store'
 
 export default {
-  name: 'RegistrationPage',
-
-  components: {
-    //ButtonsComp,
-    FormComp,
-  },
+  name: 'LogOut',
 
   data() {
     return {
-        text: "Hello There!",
         showComp: !store.getters.getUserLoggedIn,
     }
   },
@@ -31,7 +23,7 @@ export default {
 </script>
 
 <style scoped>
-  .registration {
+  .logout {
     width: 100%;
     height: 100%;
     border-radius: 0%;

@@ -3,11 +3,14 @@
     <div class="navbar">
       <img alt="MyFacebookLogo" src="./assets/facebook-svgrepo-com.svg" style="width: 3%; height: 80%; display: flex; justify-content: flex-start; margin-right: 67%; border-radius: 40%;">
       
-      <div class="login">
+      <div class="login" v-if="showComp">
         <router-link to="/login" class="logintwo">Login</router-link>
       </div>
-      <div class="registration">
+      <div class="registration" v-if="showComp">
         <router-link to="/registration" class="registrationtwo" style="text-decoration: none; color:black; color:whitesmoke; font-size: 1vw;">Registration</router-link> 
+      </div>
+      <div class="logout" v-if="!showComp">
+        <router-link to="/logout" class="logouttwo" style="text-decoration: none; color:whitesmoke; font-size: 1vw;">Logout</router-link> 
       </div>
       <div class="home">
         <router-link to="/" class="hometwo" style="text-decoration: none; color:whitesmoke; font-size: 1vw;">Home</router-link> 
@@ -25,9 +28,17 @@
 export default {
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      showComp: true,
+    };
+  },
+
+  watch: {
+    showComp () {
+      this.showComp = !this.showComp;
+    }
+  }
 };
 </script>
 
@@ -51,13 +62,14 @@ export default {
 
   .login,
   .registration,
-  .home {
+  .home,
+  .logout {
     height: 75%;
     width: 7%;
     border: 2%;
     border-radius: 60%;
     background-color: #778899;
-    margin-right: 2%;
+    margin-right: 1%;
     display: flex;
     align-items: center;
   }
@@ -65,6 +77,15 @@ export default {
   .logintwo,
   .hometwo {
     margin-left: 30%;
+    text-decoration: none; 
+    color:black; 
+    color:whitesmoke; 
+    font-size: 1vw;
+    line-height: 200%;
+  }
+
+  .logouttwo {
+    margin-left: 25%;
     text-decoration: none; 
     color:black; 
     color:whitesmoke; 

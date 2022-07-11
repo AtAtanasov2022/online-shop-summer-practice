@@ -8,7 +8,7 @@
       <validation-provider
         v-slot="{ errors }"
         name="Name"
-        rules="required|max:10"
+        rules="required|max:100"
       >
         <v-text-field
           v-model="name"
@@ -134,6 +134,7 @@
         class="mr-4"
         type="submit"
         :disabled="invalid"
+        @click="test"
       >
         Login
       </v-btn>
@@ -157,6 +158,8 @@
 <script>
     import { required, digits, email, max, regex } from 'vee-validate/dist/rules'
     import { extend, ValidationObserver, ValidationProvider, setInteractionMode } from 'vee-validate'
+    import store from '@/store'
+
     setInteractionMode('eager')
     extend('digits', {
         ...digits,
@@ -220,6 +223,14 @@
               this.select = null
               this.checkbox = null
               this.$refs.observer.reset()
+          },
+
+          test() {
+            const userInfo = {
+              username: this.name,
+              password: this.pass
+            }
+            store.dispatch('authUser', userInfo);
           },
         },
     }
