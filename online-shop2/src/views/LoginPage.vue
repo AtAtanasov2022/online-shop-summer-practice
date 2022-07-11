@@ -1,18 +1,16 @@
 <template>
   <div class="login">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <PageLogin></PageLogin>
+    <FormComp :registration-page="false"></FormComp>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import PageLogin from '@/components/PageLogin.vue'
-
+import FormComp from "../components/FormComp.vue";
 export default {
   name: 'LoginPage',
   components: {
-    PageLogin
+    FormComp
   }
 }
 </script>

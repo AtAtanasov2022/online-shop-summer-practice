@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <div class="navbar">
-      <img src="./assets/myShopLogoFinal.png" alt="MyShop" style="width: 3%; height: 80%; display: flex; justify-content: flex-start; margin-right: 67%; border-radius: 40%;">
+      <img alt="MyFacebookLogo" src="./assets/facebook-svgrepo-com.svg" style="width: 3%; height: 80%; display: flex; justify-content: flex-start; margin-right: 67%; border-radius: 40%;">
       
       <div class="login">
         <router-link to="/login" class="logintwo">Login</router-link>
@@ -14,8 +14,8 @@
       </div>
     </div>
     
-    <v-main>
-      <router-view/>
+    <v-main style="width:100%; height: 95%">
+      <router-view :key="$router.path" />
     </v-main>
   </v-app>
 </template>
@@ -35,7 +35,7 @@ export default {
   .navbar{
     height: 5%;
     width: 100%;
-    background-color: #4d4d4d;
+    background-color: #a9a9a9;
     position: relative;
     display: flex;
     justify-content: flex-end;
@@ -56,8 +56,10 @@ export default {
     width: 7%;
     border: 2%;
     border-radius: 60%;
-    background-color: #777672;
-    margin-right:2%;
+    background-color: #778899;
+    margin-right: 2%;
+    display: flex;
+    align-items: center;
   }
 
   .logintwo,
@@ -67,7 +69,7 @@ export default {
     color:black; 
     color:whitesmoke; 
     font-size: 1vw;
-    line-height: 250%;
+    line-height: 200%;
   }
 
   .registrationtwo {
@@ -76,6 +78,6 @@ export default {
     color:black; 
     color:whitesmoke; 
     font-size: 1vw;
-    line-height: 250%;
+    line-height: 200%;
   }
 </style>

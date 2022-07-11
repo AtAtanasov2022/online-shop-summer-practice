@@ -2,9 +2,9 @@
   <div class="registration">
     <PageRegistration></PageRegistration>
     <ButtonsComp>Registration</ButtonsComp>
-    <InputComp
+    <FormComp
         :placehold=text 
-    ></InputComp>
+    ></FormComp>
     <DropDown></DropDown>
     <CheckBox></CheckBox>
   </div>
@@ -14,7 +14,7 @@
 // @ is an alias to /src
 import PageRegistration from '@/components/PageRegistration.vue'
 import ButtonsComp from "../components/ButtonsComp.vue";
-import InputComp from "../components/InputComp.vue";
+import FormComp from "../components/FormComp.vue";
 import DropDown from "../components/DropDown.vue";
 import CheckBox from "../components/CheckboxComp.vue";
 
@@ -23,7 +23,7 @@ export default {
   components: {
     PageRegistration,
     ButtonsComp,
-    InputComp,
+    FormComp,
     DropDown,
     CheckBox
   },
