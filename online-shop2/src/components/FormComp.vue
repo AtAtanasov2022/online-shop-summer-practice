@@ -66,6 +66,7 @@
         rules="required|max:100"
       >
         <v-text-field
+          type="password"
           v-model="pass"
           :counter="100"
           :error-messages="errors"
@@ -80,6 +81,7 @@
         rules="required|max:100"
       >
         <v-text-field
+          type="password"
           v-model="pass2"
           :counter="100"
           :error-messages="errors"
