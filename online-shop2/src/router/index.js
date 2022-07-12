@@ -28,6 +28,7 @@ const routes = [
     name: 'logout',
     component: LogOut
   },
+
 ]
 
 const router = new VueRouter({

@@ -1,17 +1,26 @@
 <template>
   <div class="main">
     <h2>Welcome to MyFacebook</h2>
-    <div class="feed">
+    <div class="feed" v-if="userLoggedIn">
       <p>Here will be the list</p>
+    </div>
+    <div v-else>
+      <p>Please log in</p>
     </div>
   </div>
 </template>
 
 <script>
-
+  import { mapGetters } from 'vuex';
+  
   export default {
     name: 'HomeView',
 
+    computed: {
+      ...mapGetters({
+        userLoggedIn: 'getUserLoggedIn'
+      }),
+    }
   }
 </script>
 

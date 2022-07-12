@@ -1,7 +1,5 @@
 <template>
   <div class="logout" v-if="!showComp">
-      <FormComp
-      ></FormComp>
   </div>
 </template>
 
@@ -27,6 +25,6 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: 0%;
-    background-color: white;
+    background-color: black;
   }
 </style>

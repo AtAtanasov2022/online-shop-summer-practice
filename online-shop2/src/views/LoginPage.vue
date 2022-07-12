@@ -1,6 +1,7 @@
 <template>
   <div class="login" v-if="showComp">
     <FormComp :registration-page="false"></FormComp>
+    <!--<button @click="redirect">click</button>-->
   </div>
 </template>
 
@@ -19,6 +20,11 @@ export default {
     return {
       showComp: !store.getters.getUserLoggedIn,
     };
+  },
+  methods: {
+    // redirect() {
+    //   this.$router.push('/')
+    // }
   }
 }
 </script>
