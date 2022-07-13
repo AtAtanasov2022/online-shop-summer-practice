@@ -23,30 +23,41 @@
 
     <v-main style="width:100%; height: 95%">
       <router-view :key="$router.path" />
+
+      <div class="feed">
+        
+      </div>
+
       <UserProfilePage 
       :userId="'d70c26a8-b530-42eb-a658-4fb53078cbc9'">
       </UserProfilePage>
       <PostPage
-      :postId="'d3a54d93-acbb-4973-9147-7a0a0ef473fc'"
+      postId="d3a54d93-acbb-4973-9147-7a0a0ef473fc"
       >
       </PostPage>
+      <!-- <PostFeed> -->
+        
+      <!-- </PostFeed> -->
     </v-main>
   </v-app>
 </template>
 
 <script>
 // import store from '@/store'
+
 import { mapGetters } from 'vuex';
 import { mapState } from 'vuex';
 import UserProfilePage from './components/UserProfilePage.vue';
 import PostPage from './components/PostPage.vue';
+// import PostFeed from './components/PostFeed.vue';
 
 export default {
   name: 'App',
   
   components: {
     UserProfilePage,
-    PostPage
+    PostPage,
+    // PostFeed
   },
 
   data() {

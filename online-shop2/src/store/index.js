@@ -12,7 +12,8 @@ export default new Vuex.Store({
     userPosts: [],
     userLoggedIn: false,
     userTempInfo: {},
-    postTempInfo: {},
+    postTempInfo: null,
+    allPosts: []
   },
   getters: {
     getUserInfo(state) {
@@ -34,6 +35,10 @@ export default new Vuex.Store({
     getTempPostInfo(state) {
       return state.postTempInfo;
     },
+
+    getAllPosts(state) {
+      return state.allPosts;
+    },
   },
   mutations: {
     setuserdata(state, userInfo) {
@@ -50,7 +55,11 @@ export default new Vuex.Store({
 
     settemppostdata(state, tempInfo) {
       state.postTempInfo = tempInfo;
-    }
+    },
+
+    setallposts(state, tempInfo) {
+      state.allPosts = tempInfo;
+    },
   },
   actions: {
     authUser(context, usersInfo) {
@@ -96,6 +105,17 @@ export default new Vuex.Store({
       }).then(response => {
         console.log(response)
         context.commit('settemppostdata', response.data)
+      })
+    },
+
+    getPostsInfo(context) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts?limit=15', {
+        headers: {
+          "Authorization" : "MTU2Njk3NjQwNTMzNw=="
+        }
+      }).then(response => {
+        console.log(response)
+        context.commit('setallposts', response.data)
       })
     }
   },
