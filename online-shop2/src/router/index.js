@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginPage from '../views/LoginPage.vue'
 import RegistrationPage from '../views/RegistrationPage.vue'
 import LogOut from '../views/LogOut.vue'
+import PostPage from '../components/PostPage.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: LogOut
+  },
+  {
+    path: '/posts/:id',
+    name: 'singlepost',
+    component: PostPage
   },
 
 ]

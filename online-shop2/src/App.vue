@@ -14,10 +14,10 @@
         "
       />
 
-      <div class="login" v-if="!showComp">
+      <div class="login" v-if="!user">
         <router-link to="/login" class="logintwo">Login</router-link>
       </div>
-      <div class="registration" v-if="!showComp">
+      <div class="registration" v-if="!user">
         <router-link
           to="/registration"
           class="registrationtwo"
@@ -30,7 +30,7 @@
           >Registration</router-link
         >
       </div>
-      <div class="logout" v-if="showComp">
+      <div class="logout" v-if="user">
         <router-link
           to="/"
           @click.native="logout"
@@ -73,16 +73,16 @@ export default {
 
   methods: {
     logout() {
-      this.$store.commit("setuserloggedin");
+      this.$store.dispatch("logout");
     },
   },
 
   computed: {
     ...mapGetters({
-      test: "getUserLoggedIn",
+      test: "getUserInfo",
     }),
     ...mapState({
-      showComp: (state) => state.userLoggedIn,
+      user: (state) => state.userInfo,
     }),
   },
 };

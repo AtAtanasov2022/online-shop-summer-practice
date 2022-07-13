@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <h2>Welcome to MyFacebook</h2>
-    <div class="feed" v-if="userLoggedIn">
+    <div class="feed" v-if="user">
       <p>Here will be the list</p>
       <div class="feed2">
         <PostFeed>
@@ -32,7 +32,7 @@
 
     computed: {
       ...mapGetters({
-        userLoggedIn: 'getUserLoggedIn'
+        user: 'getUserInfo'
       }),
     }
   }

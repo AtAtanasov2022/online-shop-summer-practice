@@ -1,5 +1,5 @@
 <template>
-  <div class="logout" v-if="!showComp">
+  <div class="logout" @click="logout" v-if="!user">
   </div>
 </template>
 
@@ -12,10 +12,16 @@ export default {
 
   data() {
     return {
-        showComp: !store.getters.getUserLoggedIn,
+        user: !store.getters.getUserInfo,
     }
   },
 
+  methods: {
+    logout() {
+      debugger
+      this.$store.dispatch("logout")
+    }
+  }
   
 }
 </script>

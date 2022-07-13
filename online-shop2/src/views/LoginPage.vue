@@ -1,24 +1,24 @@
 <template>
-  <div class="login" v-if="showComp">
-    <FormComp :registration-page="false"></FormComp>
+  <div class="login" v-if="user">
+    <FormComponent :registration-page="false"></FormComponent>
     <!--<button @click="redirect">click</button>-->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import FormComp from "../components/FormComp.vue";
+import FormComponent from "../components/FormComponent.vue";
 import store from '@/store'
 
 export default {
   name: 'LoginPage',
   components: {
-    FormComp
+    FormComponent
   },
 
   data() {
     return {
-      showComp: !store.getters.getUserLoggedIn,
+      user: !store.getters.getUserInfo,
     };
   },
   methods: {

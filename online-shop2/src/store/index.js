@@ -13,7 +13,8 @@ export default new Vuex.Store({
     userLoggedIn: false,
     userTempInfo: {},
     postTempInfo: null,
-    allPosts: []
+    allPosts: [],
+    allComments: []
   },
   getters: {
     getUserInfo(state) {
@@ -22,10 +23,6 @@ export default new Vuex.Store({
 
     getUsersPosts(state) {
       return state.userPosts;
-    },
-
-    getUserLoggedIn(state) {
-      return state.userLoggedIn;
     },
 
     getTempUserInfo(state) {
@@ -39,10 +36,22 @@ export default new Vuex.Store({
     getAllPosts(state) {
       return state.allPosts;
     },
+
+    getAllComments(state) {
+      return state.allComments;
+    }
   },
   mutations: {
+    initialiseStore(state) {
+      const userInfo = localStorage.getItem('userInfo');
+      if (userInfo) {
+        state.userInfo = JSON.parse(userInfo);
+      }
+    },
+
     setuserdata(state, userInfo) {
       state.userInfo = userInfo
+      localStorage.setItem('userInfo', JSON.stringify(userInfo));
     },
 
     setuserloggedin(state) {
@@ -60,6 +69,15 @@ export default new Vuex.Store({
     setallposts(state, tempInfo) {
       state.allPosts = tempInfo;
     },
+
+    setallcomments(state, tempInfo) {
+      state.allComments = tempInfo;
+    },
+
+    logout(state) {
+      state.userInfo = null;
+      localStorage.setItem('userInfo', null);
+    }
   },
   actions: {
     authUser(context, usersInfo) {
@@ -85,11 +103,11 @@ export default new Vuex.Store({
         console.log(err.message)
       })
     },
-    
+
     getUserInfoById(context, userId) {
       axios.get("https://vue-social-network-api.herokuapp.com/api/users/" + userId, {
         headers: {
-          "Authorization" : "MTU2Njk3NjQwNTMzNw=="
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
         }
       }).then(response => {
         console.log(response)
@@ -98,9 +116,9 @@ export default new Vuex.Store({
     },
 
     getPostInfoById(context, postId) {
-      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/'+postId, {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/' + postId, {
         headers: {
-          "Authorization" : "MTU2Njk3NjQwNTMzNw=="
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
         }
       }).then(response => {
         console.log(response)
@@ -111,13 +129,28 @@ export default new Vuex.Store({
     getPostsInfo(context) {
       axios.get('https://vue-social-network-api.herokuapp.com/api/posts?limit=15', {
         headers: {
-          "Authorization" : "MTU2Njk3NjQwNTMzNw=="
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
         }
       }).then(response => {
         console.log(response)
         context.commit('setallposts', response.data)
       })
-    }
+    },
+
+    getCommentsInfo(context, postId) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/comments?post_id=' + postId, {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        }
+      }).then(response => {
+        console.log(response)
+        context.commit('setallcomments', response.data)
+      })
+    },
+
+    logout(context) {
+      context.commit('logout');
+    },
   },
   modules: {
   }

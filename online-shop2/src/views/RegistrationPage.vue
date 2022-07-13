@@ -1,13 +1,13 @@
 <template>
-  <div class="registration" v-if="showComp">
-    <FormComp></FormComp>
+  <div class="registration" v-if="!user">
+    <FormComponent></FormComponent>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 //import ButtonsComp from "../components/ButtonsComp.vue";
-import FormComp from "../components/FormComp.vue";
+import FormComponent from "../components/FormComponent.vue";
 import store from "@/store";
 
 export default {
@@ -15,13 +15,13 @@ export default {
 
   components: {
     //ButtonsComp,
-    FormComp,
+    FormComponent,
   },
 
   data() {
     return {
       text: "Hello There!",
-      showComp: !store.getters.getUserLoggedIn,
+      user: store.getters.getUserInfo,
     };
   },
 };

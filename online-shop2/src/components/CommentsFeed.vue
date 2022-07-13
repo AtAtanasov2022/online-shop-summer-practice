@@ -1,22 +1,21 @@
 <template>
-  <div class="postfeed" v-if="posts">
-    
-      <div class="post" v-for="post in posts" :key="post.id">
-        <img alt="User's avatar" :src="post.author.image" class="image" />
-        <p class="paragraph1">
-          {{ post.author.firstname }} {{ post.author.lastname }}
-        </p>
-        <!--Should be a link-->
-        <p class="content">
-          Content<br />
-          {{ post.post }}
-        </p>
-        <p class="content">Date: {{ post.created_at }}</p>
-        <!--Should be a link-->
-        <p class="content">Comments: {{ post.comments_count }}</p>
-        <router-link :to="{name: 'singlepost', params: { id: post.id }}" class="router">Open Post</router-link>
-      </div>
-    
+  <div class="commentfeed" v-if="comments > 0">
+    <div class="comment" v-for="comment in comments" :key="comment.id">
+      <img alt="User's avatar" :src="comment.author.image" class="image" />
+      <p class="paragraph1">
+        {{ comment.author.username }}
+      </p>
+      <!--Should be a link-->
+      <p class="content">
+        Content<br />
+        {{ comment.comment }}
+      </p>
+
+      <p class="content">Date: {{ comment.created_at }}</p>
+    </div>
+  </div>
+  <div v-else>
+    <p class="content">No comments</p>
   </div>
 </template>
 
@@ -24,22 +23,30 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "PostFeed",
+  name: "CommentsFeed",
+
+  props: {
+    postId: {
+      type: String,
+      required: true,
+      default: null
+    },
+  },
 
   computed: {
     ...mapGetters({
-      posts: "getAllPosts",
+      comments: "getAllComments",
     }),
   },
 
   beforeMount() {
-    this.$store.dispatch("getPostsInfo");
+    this.$store.dispatch("getCommentsInfo", this.postId);
   },
 };
 </script>
 
 <style scoped>
-.postfeed {
+.commentfeed {
   height: 50%;
   width: 80%;
   position: relative;
@@ -54,7 +61,7 @@ export default {
   justify-content: flex-start;
 }
 
-.post {
+.comment {
   height: 40%;
   width: 80%;
   position: relative;
@@ -81,11 +88,11 @@ export default {
 }
 
 .content {
-  margin-left: 1%;
+  margin-left: 5%;
 }
 
 .router {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 </style>
