@@ -15,20 +15,14 @@ import { mapGetters } from 'vuex';
 export default {
     name: 'UserProfilePage',
 
-    props: {
-        userId: {
-            type: String,
-            required: true
-        }
-    },
-
     computed: {
         ...mapGetters({
             userInfo: 'getTempUserInfo'
         }),
     },
 
-    beforeMount() {
+    async beforeMount() {
+        this.userId = this.$route.params.id;
         this.$store.dispatch('getUserInfoById', this.userId);
     }
 }

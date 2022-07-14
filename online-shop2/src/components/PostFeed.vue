@@ -3,18 +3,17 @@
     
       <div class="post" v-for="post in posts" :key="post.id">
         <img alt="User's avatar" :src="post.author.image" class="image" />
-        <p class="paragraph1">
-          {{ post.author.firstname }} {{ post.author.lastname }}
-        </p>
+        <router-link class="paragraph1" :to="{name: 'singleuserpage', params: { id: post.author.id }}">
+          {{ post.author.firstname }}  {{ post.author.lastname }}
+        </router-link>
         <!--Should be a link-->
         <p class="content">
           Content<br />
           {{ post.post }}
         </p>
-        <p class="content">Date: {{ post.created_at }}</p>
+        <router-link :to="{name: 'singlepost', params: { id: post.id }}" class="content router">Date: {{ post.created_at }}</router-link>
         <!--Should be a link-->
         <p class="content">Comments: {{ post.comments_count }}</p>
-        <router-link :to="{name: 'singlepost', params: { id: post.id }}" class="router">Open Post</router-link>
       </div>
     
   </div>
@@ -29,6 +28,7 @@ export default {
   computed: {
     ...mapGetters({
       posts: "getAllPosts",
+      //posts2: "getAllPostsById"
     }),
   },
 
@@ -70,6 +70,11 @@ export default {
   align-items: center;
   align-content: center;
   justify-content: flex-start;
+}
+
+.paragraph1 {
+    text-decoration: none;
+    color: black;
 }
 
 .image {

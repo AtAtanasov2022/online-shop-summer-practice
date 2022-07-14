@@ -37,7 +37,6 @@ export default {
 
   data() {
     return {
-      post: {},
       user: store.getters.getUserInfo,
     };
   },

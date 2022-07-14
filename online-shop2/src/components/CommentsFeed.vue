@@ -1,5 +1,5 @@
 <template>
-  <div class="commentfeed" v-if="comments > 0">
+  <div class="commentfeed" v-if="comments.length > 0">
     <div class="comment" v-for="comment in comments" :key="comment.id">
       <img alt="User's avatar" :src="comment.author.image" class="image" />
       <p class="paragraph1">
@@ -11,7 +11,7 @@
         {{ comment.comment }}
       </p>
 
-      <p class="content">Date: {{ comment.created_at }}</p>
+      <p class="content">Date: {{ comment.commented_at }}</p>
     </div>
   </div>
   <div v-else>
@@ -39,8 +39,10 @@ export default {
     }),
   },
 
-  beforeMount() {
+  async beforeMount() {
+    debugger
     this.$store.dispatch("getCommentsInfo", this.postId);
+    debugger
   },
 };
 </script>

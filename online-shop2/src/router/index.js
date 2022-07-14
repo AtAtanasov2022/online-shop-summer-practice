@@ -5,6 +5,7 @@ import LoginPage from '../views/LoginPage.vue'
 import RegistrationPage from '../views/RegistrationPage.vue'
 import LogOut from '../views/LogOut.vue'
 import PostPage from '../components/PostPage.vue'
+import UserProfilePage from '../components/UserProfilePage.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/posts/:id',
     name: 'singlepost',
     component: PostPage
+  },
+  {
+    path: '/user/:id',
+    name: 'singleuserpage',
+    component: UserProfilePage
   },
 
 ]
