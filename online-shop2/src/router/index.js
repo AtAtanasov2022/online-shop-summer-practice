@@ -6,6 +6,7 @@ import RegistrationPage from '../views/RegistrationPage.vue'
 import LogOut from '../views/LogOut.vue'
 import PostPage from '../components/PostPage.vue'
 import UserProfilePage from '../components/UserProfilePage.vue'
+import UserPostFeed from '../components/UserPostFeed.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/user/:id',
     name: 'singleuserpage',
     component: UserProfilePage
+  },
+  {
+    path: '/user/:username/posts',
+    name: 'singleuserfeed',
+    component: UserPostFeed
   },
 
 ]

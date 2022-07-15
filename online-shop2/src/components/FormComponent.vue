@@ -168,13 +168,12 @@ export default {
 #app {
   border: thin solid;
   border-radius: 5%;
-  background-color: #dcdcdc;
-  margin-left: 20%;
-  width: 60%;
+  margin-top: 7%;
   height: 70%;
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: center;
+  padding: 5%;
 }
 </style>

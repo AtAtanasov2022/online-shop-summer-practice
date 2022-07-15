@@ -1,8 +1,5 @@
 <template>
-  <div class="login" v-if="user">
-    <FormComponent :registration-page="false"></FormComponent>
-    <!--<button @click="redirect">click</button>-->
-  </div>
+  <FormComponent :registration-page="false" v-if="user"></FormComponent>
 </template>
 
 <script>

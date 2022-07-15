@@ -86,6 +86,10 @@ export default new Vuex.Store({
 
     setallpoststemporary(state, temporaryInfo) {
       state.allPostsById = temporaryInfo;
+    },
+
+    addUserPostToAllPosts(state, temporaryInfo) {
+      state.allPosts.unshift(temporaryInfo);
     }
   },
   actions: {
@@ -161,14 +165,29 @@ export default new Vuex.Store({
       context.commit('logout');
     },
 
-    getAllPostsById(context, userId) {
-      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/' + userId, {
+    getAllPostsByUsername(context, username) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/?author.username=' + username, {
         headers: {
           "Authorization": "MTU2Njk3NjQwNTMzNw=="
         }
       }).then(response => {
         console.log(response)
         context.commit('setallpoststemporary', response.data)
+      })
+    },
+
+    addPost(context, postContent) {
+      axios.post("https://vue-social-network-api.herokuapp.com/api/posts", {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        },
+        
+        "post" : "" + postContent
+      }).then(response => {
+        console.log(response)
+        context.commit('addUserPostToAllPosts', response.data)
+      }).catch(err => {
+        console.log(err.message)
       })
     }
   },

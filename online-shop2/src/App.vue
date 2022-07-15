@@ -10,47 +10,40 @@
           display: flex;
           justify-content: flex-start;
           margin-right: 67%;
-          border-radius: 40%;
+          border-radius: 40px;
         "
       />
 
-      <div class="login" v-if="!user">
-        <router-link to="/login" class="logintwo">Login</router-link>
-      </div>
-      <div class="registration" v-if="!user">
-        <router-link
-          to="/registration"
-          class="registrationtwo"
-          style="
-            text-decoration: none;
-            color: black;
-            color: whitesmoke;
-            font-size: 1vw;
-          "
-          >Registration</router-link
-        >
-      </div>
-      <div class="logout" v-if="user">
-        <router-link
-          to="/"
-          @click.native="logout"
-          class="logouttwo"
-          style="text-decoration: none; color: whitesmoke; font-size: 1vw"
-        >
-          Logout</router-link
-        >
-      </div>
-      <div class="home">
-        <router-link
-          to="/"
-          class="hometwo"
-          style="text-decoration: none; color: whitesmoke; font-size: 1vw"
-          >Home
-        </router-link>
-      </div>
+      <router-link class="login" to="/login" v-if="!user">Login</router-link>
+      <router-link class="login" to="/registration" v-if="!user"
+        >Registration</router-link
+      >
+      <router-link
+        v-if="user"
+        class="login"
+        to="/"
+        @click.native="logout"
+        style="text-decoration: none; color: whitesmoke; font-size: 1vw"
+      >
+        Logout</router-link
+      >
+      <router-link
+        class="login"
+        to="/"
+        style="text-decoration: none; color: whitesmoke; font-size: 1vw"
+        >Home
+      </router-link>
+      <router-link
+        v-if="user"
+        class="login"
+        to="/user/:id"
+        style="text-decoration: none; color: whitesmoke; font-size: 1vw"
+      >
+        My profile
+      </router-link>
     </div>
 
-    <v-main style="">
+    <v-main style="display: flex; justifyContent: center;">
       <router-view :key="$router.path" />
     </v-main>
   </v-app>
@@ -104,27 +97,27 @@ export default {
   width: 3%;
   height: 3%;
   justify-content: right;
+  border-radius: 20px;
 }
 
-.login,
-.registration,
-.home,
-.logout {
+.login {
   height: 75%;
   width: 7%;
-  border: 2%;
-  border-radius: 60%;
+  border-radius: 50px;
   background-color: #778899;
   margin-right: 1%;
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: whitesmoke;
+  font-size: 1vw;
+  justify-content: center;
 }
 
-.logintwo,
+/* .logintwo,
 .hometwo {
   margin-left: 30%;
   text-decoration: none;
-  color: black;
   color: whitesmoke;
   font-size: 1vw;
   line-height: 200%;
@@ -133,7 +126,6 @@ export default {
 .logouttwo {
   margin-left: 25%;
   text-decoration: none;
-  color: black;
   color: whitesmoke;
   font-size: 1vw;
   line-height: 200%;
@@ -142,9 +134,8 @@ export default {
 .registrationtwo {
   margin-left: 12%;
   text-decoration: none;
-  color: black;
   color: whitesmoke;
   font-size: 1vw;
   line-height: 200%;
-}
+} */
 </style>

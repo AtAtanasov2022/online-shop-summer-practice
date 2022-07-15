@@ -1,29 +1,47 @@
 <template>
   <div class="postfeed" v-if="posts">
-    
-      <div class="post" v-for="post in posts" :key="post.id">
-        <img alt="User's avatar" :src="post.author.image" class="image" />
-        <router-link class="paragraph1" :to="{name: 'singleuserpage', params: { id: post.author.id }}">
-          {{ post.author.firstname }}  {{ post.author.lastname }}
-        </router-link>
-        <!--Should be a link-->
-        <p class="content">
-          Content<br />
+    <AddPostComponent></AddPostComponent>
+    <div class="post" v-for="(post, index) in posts" :key="post.id">
+      <img
+        :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
+        class="image"
+      />
+
+      <router-link
+        class="paragraph1"
+        :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
+      >
+        {{ post.author.firstname }} {{ post.author.lastname }}
+      </router-link>
+      <!--Should be a link-->
+      <div class="div2">
+        <div class="content">
           {{ post.post }}
-        </p>
-        <router-link :to="{name: 'singlepost', params: { id: post.id }}" class="content router">Date: {{ post.created_at }}</router-link>
-        <!--Should be a link-->
-        <p class="content">Comments: {{ post.comments_count }}</p>
+        </div>
+        <div class="div3">
+          <router-link
+            :to="{ name: 'singlepost', params: { id: post.id } }"
+            class="content router"
+            >Date: {{ post.created_at }}</router-link
+          >
+          <!--Should be a link-->
+          <p class="comments">Comments: {{ post.comments_count }}</p>
+        </div>
       </div>
-    
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import AddPostComponent from "../components/AddPostComponent.vue";
 
 export default {
   name: "PostFeed",
+
+  components: {
+    AddPostComponent,
+  },
 
   computed: {
     ...mapGetters({
@@ -72,9 +90,27 @@ export default {
   justify-content: flex-start;
 }
 
+.div2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.div3 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 80%;
+  align-content: center;
+}
+
 .paragraph1 {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .image {
@@ -86,11 +122,16 @@ export default {
 }
 
 .content {
-  margin-left: 1%;
+  margin-left: 5%;
+  height: 30%;
+}
+
+.comments {
+  margin-left: 50%;
 }
 
 .router {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 </style>

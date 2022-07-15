@@ -1,7 +1,7 @@
 <template>
   <div class="commentfeed" v-if="comments.length > 0">
     <div class="comment" v-for="comment in comments" :key="comment.id">
-      <img alt="User's avatar" :src="comment.author.image" class="image" />
+      <img :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`" class="image" />
       <p class="paragraph1">
         {{ comment.author.username }}
       </p>
@@ -34,15 +34,16 @@ export default {
   },
 
   computed: {
+    pictureId () {
+      return Math.floor(Math.random() * 10)
+    },
     ...mapGetters({
       comments: "getAllComments",
     }),
   },
 
   async beforeMount() {
-    debugger
     this.$store.dispatch("getCommentsInfo", this.postId);
-    debugger
   },
 };
 </script>

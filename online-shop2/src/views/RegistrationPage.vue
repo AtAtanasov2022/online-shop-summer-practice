@@ -1,7 +1,5 @@
 <template>
-  <div class="registration" v-if="!user">
-    <FormComponent></FormComponent>
-  </div>
+  <FormComponent v-if="!user"></FormComponent>
 </template>
 
 <script>
@@ -28,10 +26,11 @@ export default {
 </script>
 
 <style scoped>
-.registration {
+/* .registration {
   width: 100%;
   height: 100%;
   border-radius: 0%;
+  margin-top:5%;
   background-color: white;
-}
+} */
 </style>

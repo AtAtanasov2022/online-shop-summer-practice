@@ -1,8 +1,9 @@
 <template>
+<!-- :src="postInfo.author.image" -->
   <div class="post" v-if="postInfo && user">
     <img
       alt="User's avatar"
-      :src="postInfo.author.image"
+      :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
       class="image"
     />
     <p class="paragraph1">{{ postInfo.author.firstname }} {{ postInfo.author.lastname }}</p>
@@ -42,6 +43,9 @@ export default {
   },
 
   computed: {
+    pictureId () {
+      return Math.floor(Math.random() * 10)
+    },
     ...mapGetters({
       postInfo: "getTempPostInfo",
     }),
