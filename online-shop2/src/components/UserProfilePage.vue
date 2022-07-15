@@ -1,18 +1,23 @@
 <template>
   <div class="profilePage">
-    <img
-      :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
-      class="image"
-    />
-    <p class="paragraph1">{{ userInfo.firstname }}</p>
-    <p class="paragraph1">{{ userInfo.lastname }}</p>
-    <br /><br /><br /><br /><br />
-    <p class="email">Email: {{ userInfo.email }}</p>
-    <router-link
-      :to="{ name: 'singleuserfeed', params: { username: userInfo.username } }"
-      class="router"
-      >View All Posts</router-link
-    >
+    <div class="imageparagraph">
+      <img
+        :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
+        class="image"
+      />
+      <p class="paragraph1">{{ userInfo.firstname }} {{ userInfo.lastname }}</p>
+    </div>
+    <div class="emaillink">
+      <p class="email">Email: {{ userInfo.email }}</p>
+      <router-link
+        :to="{
+          name: 'singleuserfeed',
+          params: { username: userInfo.username },
+        }"
+        class="router"
+        >View All Posts</router-link
+      >
+    </div>
   </div>
 </template>
 
@@ -40,7 +45,7 @@ export default {
 
 <style scoped>
 .profilePage {
-  height: 30%;
+  min-height: 320px;
   width: 45%;
   /* position: relative; */
   display: flex;
@@ -49,31 +54,54 @@ export default {
   background-color: #a9a9a9;
   margin: auto;
   margin-top: 50px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
-  align-content: center;
-  justify-content: flex-start;
+  /* align-content: center; */
+  flex-direction: row;
 }
+.imageparagraph {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.emaillink {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-right: 20px;
+  height: 100%;
+}
+
 .image {
-  margin-top: 1%;
-  margin-left: 3%;
-  height: 30%;
-  border-radius: 40%;
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+  margin: 1%;
   border: thin solid;
-  border-color: gray;
 }
 .paragraph1 {
+  color: black;
   margin-top: 1%;
-  margin-left: 3%;
+  margin: auto;
   font-size: 1.5vw;
 }
 .email {
-  margin-top: -10%;
+  margin-top: 10%;
   margin-left: 3%;
   margin: 1%;
+  font-size: 1.0vw;
 }
 .router {
   text-decoration: none;
   color: inherit;
+  font-size: 1.0vw;
 }
 </style>
