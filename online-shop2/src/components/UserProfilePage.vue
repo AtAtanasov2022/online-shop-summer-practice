@@ -40,14 +40,15 @@ export default {
 
 <style scoped>
 .profilePage {
-  height: 20%;
-  width: 30%;
-  position: relative;
+  height: 30%;
+  width: 45%;
+  /* position: relative; */
   display: flex;
   border: thin solid;
-  border-radius: 5%;
+  border-radius: 20px;
   background-color: #a9a9a9;
-  margin: 10%;
+  margin: auto;
+  margin-top: 50px;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;

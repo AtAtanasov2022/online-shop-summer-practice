@@ -2,18 +2,18 @@
   <div class="postfeed" v-if="posts">
     <AddPostComponent></AddPostComponent>
     <div class="post" v-for="(post, index) in posts" :key="post.id">
-      <img
-        :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
-        class="image"
-      />
-
-      <router-link
-        class="paragraph1"
-        :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
-      >
-        {{ post.author.firstname }} {{ post.author.lastname }}
-      </router-link>
-      <!--Should be a link-->
+      <div class="div1">
+        <img
+          :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
+          class="image"
+        />
+        <router-link
+          class="paragraph1"
+          :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
+        >
+          {{ post.author.firstname }} {{ post.author.lastname }}
+        </router-link>
+      </div>
       <div class="div2">
         <div class="content">
           {{ post.post }}
@@ -21,7 +21,7 @@
         <div class="div3">
           <router-link
             :to="{ name: 'singlepost', params: { id: post.id } }"
-            class="content router"
+            class="router"
             >Date: {{ post.created_at }}</router-link
           >
           <!--Should be a link-->
@@ -58,76 +58,93 @@ export default {
 
 <style scoped>
 .postfeed {
-  height: 50%;
+  /* height: 50%; */
   width: 80%;
-  position: relative;
+  /* position: relative; */
   display: flex;
   border: thin solid;
   border-radius: 71px;
   background-color: #a9a9a9;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   flex-wrap: wrap;
   align-items: center;
-  align-content: center;
-  justify-content: flex-start;
+  /* align-content: center; */
+  justify-content: center;
 }
 
 .post {
-  height: 40%;
+  min-height: 160px;
   width: 80%;
-  position: relative;
+  /* position: relative; */
   display: flex;
   border: thin solid;
   border-radius: 30px;
   background-color: #a9a9a9;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   margin-top: 3%;
-  font-weight: 100;
-  font-weight: 100;
-  flex-wrap: wrap;
+  /* flex-wrap: nowrap; */
   align-items: center;
-  align-content: center;
-  justify-content: flex-start;
+  /* align-content: center; */
+  flex-direction: row;
+}
+
+.div1 {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .div2 {
+  width: 80%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   align-content: flex-start;
+  /* width: 100%; */
+  justify-content: space-around;
   flex-wrap: wrap;
+  padding-right: 20px;
 }
 
 .div3 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 100%;
   align-content: center;
+  margin-top: 15px;
+  /* margin-bottom: 2%; */
 }
 
 .paragraph1 {
   text-decoration: none;
   color: black;
+  margin-left: 1%;
 }
 
 .image {
-  height: 10%;
-  width: 10%;
-  border-radius: 30px;
+  height: 70px;
+  width: 70px;
+  border-radius: 20px;
   margin: 1%;
   border: thin solid;
 }
 
 .content {
-  margin-left: 5%;
+  width: 100%;
   height: 30%;
+  /* padding: 2% 3% 0%; */
 }
 
-.comments {
-  margin-left: 50%;
+.v-application p {
+  margin-bottom: 0px;
 }
 
 .router {

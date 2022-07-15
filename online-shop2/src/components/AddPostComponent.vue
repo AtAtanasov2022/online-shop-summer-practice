@@ -35,7 +35,7 @@ export default {
     .postadd {
         height: 20%;
         width: 90%;
-        margin-left: 5%;
+        /* margin-left: 5%; */
         margin-top: 1%;
         position: relative;
         display: flex;

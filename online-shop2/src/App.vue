@@ -36,7 +36,7 @@
       <router-link
         v-if="user"
         class="login"
-        to="/user/:id"
+        :to="`/user/${user.user.id}`"
         style="text-decoration: none; color: whitesmoke; font-size: 1vw"
       >
         My profile
