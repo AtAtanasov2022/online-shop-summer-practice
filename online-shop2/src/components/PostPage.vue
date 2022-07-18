@@ -1,12 +1,14 @@
 <template>
-<!-- :src="postInfo.author.image" -->
+  <!-- :src="postInfo.author.image" -->
   <div class="post" v-if="postInfo && user">
     <img
       alt="User's avatar"
       :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
       class="image"
     />
-    <p class="paragraph1">{{ postInfo.author.firstname }} {{ postInfo.author.lastname }}</p>
+    <p class="paragraph1">
+      {{ postInfo.author.firstname }} {{ postInfo.author.lastname }}
+    </p>
     <p class="content">
       Content<br />
       {{ postInfo.post }}
@@ -14,11 +16,7 @@
 
     <div class="commentSection">
       <p class="contentTemporary">Text area for adding comp</p>
-      <CommentsFeed
-        :postId="postInfo.id"
-      >
-
-      </CommentsFeed>
+      <CommentsFeed :postId="id"> </CommentsFeed>
     </div>
   </div>
 </template>
@@ -26,25 +24,26 @@
 <script>
 import { mapGetters } from "vuex";
 //import { mapState } from "vuex";
-import CommentsFeed from '../components/CommentsFeed.vue'
-import store from '@/store'
+import CommentsFeed from "../components/CommentsFeed.vue";
+import store from "@/store";
 
 export default {
   name: "PostPage",
-  
+
   components: {
-    CommentsFeed
+    CommentsFeed,
   },
 
   data() {
     return {
       user: store.getters.getUserInfo,
+      id: null
     };
   },
 
   computed: {
-    pictureId () {
-      return Math.floor(Math.random() * 10)
+    pictureId() {
+      return Math.floor(Math.random() * 10);
     },
     ...mapGetters({
       postInfo: "getTempPostInfo",
@@ -53,28 +52,33 @@ export default {
     //   currentPostInfo: (state) => state.postTempInfo,
     // }),
   },
-
-  async beforeMount() {
-    this.postId = this.$route.params.id;
-    this.$store.dispatch("getPostInfoById", this.postId);
+  beforeDestroy() {
+      this.$store.dispatch("clearPostData", null)
   },
 
-  mounted() {
-  }
+  async beforeMount() {
+    this.id = this.$route.params.id;
+  },
+
+  async mounted() {
+    let postId = this.$route.params.id;
+    debugger;
+    await this.$store.dispatch("getPostInfoById", postId);
+  },
 };
 </script>
 
 <style scoped>
 .post {
-  height: 50%;
+  height: 600px;
   width: 80%;
   position: relative;
   display: flex;
   border: thin solid;
   border-radius: 30px;
-  background-color: #a9a9a9;
-  margin-left: 10%;
-  margin-top: 15%;
+  background-color: #eff6e0;
+  margin: auto;
+  margin-top: 50px;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
@@ -86,8 +90,8 @@ export default {
 }
 
 .image {
-  height: 25%;
-  width: 11%;
+  height: 130px;
+  width: 130px;
   border-radius: 30px;
   margin-left: 2%;
   border: thin solid;
@@ -105,6 +109,6 @@ export default {
 
 .contentTemporary {
   width: 100%;
-  margin-left: 5%
+  margin-left: 5%;
 }
 </style>

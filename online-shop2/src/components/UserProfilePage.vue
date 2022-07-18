@@ -51,7 +51,7 @@ export default {
   display: flex;
   border: thin solid;
   border-radius: 20px;
-  background-color: #a9a9a9;
+  background-color: #EFF6E0;
   margin: auto;
   margin-top: 50px;
   /* flex-wrap: wrap; */
@@ -97,11 +97,11 @@ export default {
   margin-top: 10%;
   margin-left: 3%;
   margin: 1%;
-  font-size: 1.0vw;
+  font-size: 1.5vw;
 }
 .router {
   text-decoration: none;
   color: inherit;
-  font-size: 1.0vw;
+  font-size: 1.3vw;
 }
 </style>

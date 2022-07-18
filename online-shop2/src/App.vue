@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-color: white">
     <div class="navbar">
       <img
         alt="MyFacebookLogo"
@@ -10,7 +10,7 @@
           display: flex;
           justify-content: flex-start;
           margin-right: 67%;
-          border-radius: 40px;
+          border-radius: 100px;
         "
       />
 
@@ -43,7 +43,7 @@
       </router-link>
     </div>
 
-    <v-main style="display: flex; justifyContent: center;">
+    <v-main style="display: flex; justifyContent: center; background-color: white;">
       <router-view :key="$router.path" />
     </v-main>
   </v-app>
@@ -85,7 +85,7 @@ export default {
 .navbar {
   height: 5%;
   width: 100%;
-  background-color: #a9a9a9;
+  background-color: #124559;
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -97,14 +97,14 @@ export default {
   width: 3%;
   height: 3%;
   justify-content: right;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 .login {
   height: 75%;
   width: 7%;
   border-radius: 50px;
-  background-color: #778899;
+  background-color: #598392;
   margin-right: 1%;
   display: flex;
   align-items: center;

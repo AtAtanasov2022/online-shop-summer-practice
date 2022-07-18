@@ -140,7 +140,7 @@
           @click="registration"
           :disabled="invalid"
         >
-          Registering
+          Register
         </v-btn>
 
         <v-btn @click="clear"> clear </v-btn>

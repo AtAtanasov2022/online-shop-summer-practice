@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <h2>Welcome to MyFacebook</h2>
+    <h2 style="margin: auto; margin-top: 20px">Welcome to MyFacebook</h2>
     <!-- <div class="feed" v-if="user">
       <p>Here will be the list</p>
       <div class="feed2"> -->

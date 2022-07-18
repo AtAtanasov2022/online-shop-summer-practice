@@ -1,7 +1,10 @@
 <template>
   <div class="commentfeed" v-if="comments.length > 0">
     <div class="comment" v-for="comment in comments" :key="comment.id">
-      <img :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`" class="image" />
+      <img
+        :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
+        class="image"
+      />
       <p class="paragraph1">
         {{ comment.author.username }}
       </p>
@@ -29,20 +32,19 @@ export default {
     postId: {
       type: String,
       required: true,
-      default: null
     },
   },
 
   computed: {
-    pictureId () {
-      return Math.floor(Math.random() * 10)
+    pictureId() {
+      return Math.floor(Math.random() * 10);
     },
     ...mapGetters({
       comments: "getAllComments",
     }),
   },
 
-  async beforeMount() {
+  mounted() {
     this.$store.dispatch("getCommentsInfo", this.postId);
   },
 };
@@ -50,18 +52,17 @@ export default {
 
 <style scoped>
 .commentfeed {
-  height: 50%;
-  width: 80%;
+  height: fit-content;
+  width: 90%;
   position: relative;
   display: flex;
-  border: thin solid;
-  border-radius: 71px;
-  background-color: #a9a9a9;
-  margin-left: 10%;
+  background-color: #eff6e0;
+  margin: auto;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;
   justify-content: flex-start;
+  padding: 10px;
 }
 
 .comment {
@@ -71,9 +72,9 @@ export default {
   display: flex;
   border: thin solid;
   border-radius: 30px;
-  background-color: #a9a9a9;
-  margin-left: 10%;
-  margin-top: 3%;
+  background-color: #eff6e0;
+  margin: auto;
+  margin-top: 2%;
   font-weight: 100;
   font-weight: 100;
   flex-wrap: wrap;

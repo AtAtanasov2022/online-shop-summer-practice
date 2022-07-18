@@ -62,14 +62,14 @@ export default {
   width: 80%;
   /* position: relative; */
   display: flex;
-  border: thin solid;
   border-radius: 71px;
-  background-color: #a9a9a9;
+  background-color: #ffffff;
   /* margin-left: 10%; */
   flex-wrap: wrap;
   align-items: center;
   /* align-content: center; */
   justify-content: center;
+  margin-top: 20px;
 }
 
 .post {
@@ -79,7 +79,7 @@ export default {
   display: flex;
   border: thin solid;
   border-radius: 30px;
-  background-color: #a9a9a9;
+  background-color: #EFF6E0;
   /* margin-left: 10%; */
   margin-top: 3%;
   /* flex-wrap: nowrap; */
