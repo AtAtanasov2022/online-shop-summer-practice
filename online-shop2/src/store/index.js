@@ -193,6 +193,21 @@ export default new Vuex.Store({
       }).catch(err => {
         console.log(err.message)
       })
+    },
+
+    addComment(context, commentContent, postId) {
+      axios.post("https://vue-social-network-api.herokuapp.com/api/comments?post_id=" + postId, {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        },
+        
+        "comment" : "" + commentContent
+      }).then(response => {
+        console.log(response)
+        context.commit('addUserPostToAllPosts', response.data)
+      }).catch(err => {
+        console.log(err.message)
+      })
     }
   },
   modules: {

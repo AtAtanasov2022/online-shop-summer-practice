@@ -1,5 +1,6 @@
 <template>
   <div class="commentfeed" v-if="comments.length > 0">
+    <AddComment :Id=postId></AddComment>
     <div class="comment" v-for="comment in comments" :key="comment.id">
       <img
         :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
@@ -18,12 +19,14 @@
     </div>
   </div>
   <div v-else>
+    <AddComment :Id=postId></AddComment>
     <p class="content">No comments</p>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import AddComment from "../components/AddComment.vue"
 
 export default {
   name: "CommentsFeed",
@@ -33,6 +36,10 @@ export default {
       type: String,
       required: true,
     },
+  },
+
+  components: {
+    AddComment
   },
 
   computed: {

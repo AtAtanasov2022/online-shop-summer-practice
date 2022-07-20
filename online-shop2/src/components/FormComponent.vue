@@ -225,14 +225,16 @@ export default {
     },
 
     registration() {
-      const userInfo = {
-        username: this.name,
-        email: this.email,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        password: this.pass,
-      };
-      store.dispatch("signUpUser", userInfo);
+      if (this.pass === this.pass2 && this.pass != "") {
+        const userInfo = {
+          username: this.name,
+          email: this.email,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          password: this.pass,
+        };
+        store.dispatch("signUpUser", userInfo);
+      } else console.log("WRONG PASS");
     },
   },
 };
