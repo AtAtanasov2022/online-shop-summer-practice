@@ -15,7 +15,8 @@ export default new Vuex.Store({
     postTempInfo: null,
     allPosts: [],
     allComments: [],
-    allPostsById:[]
+    allPostsById:[],
+    postsByDate:[]
   },
   getters: {
     getUserInfo(state) {
@@ -44,7 +45,7 @@ export default new Vuex.Store({
 
     getAllPostsById(state) {
       return state.allPostsById;
-    }
+    },
   },
   mutations: {
     initialiseStore(state) {
@@ -94,7 +95,7 @@ export default new Vuex.Store({
 
     addUserCommentToAllComments(state, temporaryInfo) {
       state.allComments.unshift(temporaryInfo);
-    }
+    },
   },
   actions: {
     authUser(context, usersInfo) {
@@ -211,6 +212,17 @@ export default new Vuex.Store({
         context.commit('addUserCommentToAllComments', response.data)
       }).catch(err => {
         console.log(err.message)
+      })
+    },
+
+    getPostsByDate(context, pickedDate) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/?created_at_like=' + pickedDate, {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        }
+      }).then(response => {
+        console.log(response)
+        context.commit('setallposts', response.data)
       })
     }
   },

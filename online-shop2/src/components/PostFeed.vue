@@ -1,11 +1,18 @@
 <template>
   <div class="postfeed" v-if="posts">
     <AddPostComponent></AddPostComponent>
-    <v-date-picker
-      v-model="pickerInput"
-      color="green lighten-1"
-      header-color="primary"
-    ></v-date-picker>
+    <form class="picker">
+      <v-date-picker
+        v-if="datePicker"
+        v-model="pickerInput"
+        color="green lighten-1"
+        header-color="primary"
+      ></v-date-picker>
+      <v-btn @click="cancel" v-if="datePicker">Cancel</v-btn>
+      <v-btn @click="filterByDate" v-if="datePicker">Filter</v-btn>
+      <v-btn @click="setDatePicker" v-if="!datePicker">Date filter</v-btn>
+      <v-btn @click="setClearFilter" v-if="clearFilter">Clear filter</v-btn>
+    </form>
     <div class="post" v-for="(post, index) in posts" :key="post.id">
       <div class="div1">
         <img
@@ -48,22 +55,44 @@ export default {
     AddPostComponent,
   },
 
-    data() {
-        return {
-            pickerInput: ''
-        };
-    },
+  data() {
+    return {
+      pickerInput: "",
+      datePicker: false,
+      clearFilter: false,
+    };
+  },
 
   computed: {
     ...mapGetters({
       posts: "getAllPosts",
-      //pickerInput: "getAllPost"
-      //posts2: "getAllPostsById"
     }),
   },
 
   beforeMount() {
     this.$store.dispatch("getPostsInfo");
+  },
+
+  methods: {
+    setDatePicker() {
+      this.datePicker = !this.datePicker;
+    },
+
+    cancel() {
+      this.datePicker = false;
+      this.pickerInput = "";
+    },
+
+    filterByDate() {
+      this.$store.dispatch("getPostsByDate", this.pickerInput);
+      this.datePicker = !this.datePicker;
+      this.clearFilter = !this.clearFilter;
+    },
+
+    setClearFilter() {
+      this.$store.dispatch("getPostsInfo");
+      this.clearFilter = !this.clearFilter;
+    },
   },
 };
 </script>
@@ -82,6 +111,16 @@ export default {
   /* align-content: center; */
   justify-content: center;
   margin-top: 20px;
+  flex-direction: column;
+}
+
+.picker {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: flex-end;
+  margin-top: 10px;
 }
 
 .post {
@@ -91,7 +130,7 @@ export default {
   display: flex;
   border: thin solid;
   border-radius: 30px;
-  background-color: #EFF6E0;
+  background-color: #eff6e0;
   /* margin-left: 10%; */
   margin-top: 3%;
   /* flex-wrap: nowrap; */

@@ -62,7 +62,6 @@ export default {
 
   async mounted() {
     let postId = this.$route.params.id;
-    debugger;
     await this.$store.dispatch("getPostInfoById", postId);
   },
 };

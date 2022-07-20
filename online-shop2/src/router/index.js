@@ -46,7 +46,6 @@ const routes = [
     name: 'singleuserfeed',
     component: UserPostFeed
   },
-
 ]
 
 const router = new VueRouter({
