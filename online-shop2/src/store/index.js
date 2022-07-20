@@ -139,6 +139,10 @@ export default new Vuex.Store({
       })
     },
 
+    clearPostData(context, data) {
+      context.commit('settemppostdata', data)
+    },
+
     getPostsInfo(context) {
       axios.get('https://vue-social-network-api.herokuapp.com/api/posts?limit=15', {
         headers: {
