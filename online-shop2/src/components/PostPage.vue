@@ -70,7 +70,9 @@ export default {
 
 <style scoped>
 .post {
-  height: 600px;
+  /* height: 600px; */
+  height: fit-content;
+  padding: 8px;
   width: 80%;
   position: relative;
   display: flex;

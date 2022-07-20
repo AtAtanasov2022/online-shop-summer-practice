@@ -1,6 +1,11 @@
 <template>
   <div class="postfeed" v-if="posts">
     <AddPostComponent></AddPostComponent>
+    <v-date-picker
+      v-model="pickerInput"
+      color="green lighten-1"
+      header-color="primary"
+    ></v-date-picker>
     <div class="post" v-for="(post, index) in posts" :key="post.id">
       <div class="div1">
         <img
@@ -43,9 +48,16 @@ export default {
     AddPostComponent,
   },
 
+    data() {
+        return {
+            pickerInput: ''
+        };
+    },
+
   computed: {
     ...mapGetters({
       posts: "getAllPosts",
+      //pickerInput: "getAllPost"
       //posts2: "getAllPostsById"
     }),
   },

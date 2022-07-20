@@ -90,6 +90,10 @@ export default new Vuex.Store({
 
     addUserPostToAllPosts(state, temporaryInfo) {
       state.allPosts.unshift(temporaryInfo);
+    },
+
+    addUserCommentToAllComments(state, temporaryInfo) {
+      state.allComments.unshift(temporaryInfo);
     }
   },
   actions: {
@@ -204,7 +208,7 @@ export default new Vuex.Store({
         "comment" : "" + commentContent
       }).then(response => {
         console.log(response)
-        context.commit('addUserPostToAllPosts', response.data)
+        context.commit('addUserCommentToAllComments', response.data)
       }).catch(err => {
         console.log(err.message)
       })
