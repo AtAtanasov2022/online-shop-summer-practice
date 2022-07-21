@@ -1,5 +1,6 @@
 <template>
-  <div class="main">
+  <Loader v-if="!isLoaded"></Loader>
+  <div v-else class="main">
     <h2 style="margin: auto; margin-top: 20px">Welcome to MyFacebook</h2>
     <!-- <div class="feed" v-if="user">
       <p>Here will be the list</p>
@@ -18,14 +19,22 @@ import { mapGetters } from "vuex";
 //import UserProfilePage from '../components/UserProfilePage.vue';
 //import PostPage from '../components/PostPage.vue';
 import PostFeed from "../components/PostFeed.vue";
+import Loader from "../components/LoaderComponent.vue";
 
 export default {
   name: "HomeView",
+
+  data() {
+    return {
+      isLoaded: false
+    };
+  },
 
   components: {
     //UserProfilePage,
     //PostPage,
     PostFeed,
+    Loader
   },
 
   computed: {
@@ -33,6 +42,10 @@ export default {
       user: "getUserInfo",
     }),
   },
+
+  mounted() {
+    setTimeout(() => {  this.isLoaded = true; }, 1000);
+  }
 };
 </script>
 

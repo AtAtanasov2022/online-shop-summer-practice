@@ -1,43 +1,49 @@
 <template>
   <div class="postfeed" v-if="posts">
     <AddPostComponent></AddPostComponent>
-    <form class="picker">
-      <v-date-picker
-        v-if="datePicker"
-        v-model="pickerInput"
-        color="green lighten-1"
-        header-color="primary"
-      ></v-date-picker>
-      <v-btn @click="cancel" v-if="datePicker">Cancel</v-btn>
-      <v-btn @click="filterByDate" v-if="datePicker">Filter</v-btn>
-      <v-btn @click="setDatePicker" v-if="!datePicker">Date filter</v-btn>
-      <v-btn @click="setClearFilter" v-if="clearFilter">Clear filter</v-btn>
-    </form>
+    <v-expansion-panels focusable class="filter">
+      <v-expansion-panel @click="datePicker=true">
+        <v-expansion-panel-header>Filter by date</v-expansion-panel-header>
+        <v-expansion-panel-content>
+          <v-date-picker
+            v-model="pickerInput"
+            color="green lighten-1"
+            header-color="primary"
+          ></v-date-picker>
+          <v-btn @click="cancel" v-if="datePicker">Cancel</v-btn>
+          <v-btn @click="filterByDate" v-if="datePicker">Filter</v-btn>
+          <v-btn @click="setClearFilter" v-if="clearFilter">Clear filter</v-btn>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-expansion-panels>
     <div class="post" v-for="(post, index) in posts" :key="post.id">
-      <div class="div1">
-        <img
-          :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
-          class="image"
-        />
-        <router-link
-          class="paragraph1"
-          :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
-        >
-          {{ post.author.firstname }} {{ post.author.lastname }}
-        </router-link>
-      </div>
-      <div class="div2">
-        <div class="content">
-          {{ post.post }}
-        </div>
-        <div class="div3">
+      <Loader v-if="!isLoaded"></Loader>
+      <div v-else-if="isLoaded" class="helploadeffect">
+        <div class="div1">
+          <img
+            :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
+            class="image"
+          />
           <router-link
-            :to="{ name: 'singlepost', params: { id: post.id } }"
-            class="router"
-            >Date: {{ post.created_at }}</router-link
+            class="paragraph1"
+            :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
           >
-          <!--Should be a link-->
-          <p class="comments">Comments: {{ post.comments_count }}</p>
+            {{ post.author.firstname }} {{ post.author.lastname }}
+          </router-link>
+        </div>
+        <div class="div2">
+          <div class="content">
+            {{ post.post }}
+          </div>
+          <div class="div3">
+            <router-link
+              :to="{ name: 'singlepost', params: { id: post.id } }"
+              class="router"
+              >Date: {{ post.created_at }}</router-link
+            >
+            <!--Should be a link-->
+            <p class="comments">Comments: {{ post.comments_count }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -47,12 +53,14 @@
 <script>
 import { mapGetters } from "vuex";
 import AddPostComponent from "../components/AddPostComponent.vue";
+import Loader from "../components/LoaderComponent.vue";
 
 export default {
   name: "PostFeed",
 
   components: {
     AddPostComponent,
+    Loader,
   },
 
   data() {
@@ -60,6 +68,7 @@ export default {
       pickerInput: "",
       datePicker: false,
       clearFilter: false,
+      isLoaded: false,
     };
   },
 
@@ -73,13 +82,18 @@ export default {
     this.$store.dispatch("getPostsInfo");
   },
 
+  mounted() {
+    setTimeout(() => {
+      this.isLoaded = true;
+    }, 1000);
+  },
+
   methods: {
     setDatePicker() {
       this.datePicker = !this.datePicker;
     },
 
     cancel() {
-      this.datePicker = false;
       this.pickerInput = "";
     },
 
@@ -92,6 +106,7 @@ export default {
     setClearFilter() {
       this.$store.dispatch("getPostsInfo");
       this.clearFilter = !this.clearFilter;
+      this.datePicker = !this.datePicker;
     },
   },
 };
@@ -133,6 +148,22 @@ export default {
   background-color: #eff6e0;
   /* margin-left: 10%; */
   margin-top: 3%;
+  /* flex-wrap: nowrap; */
+  align-items: center;
+  /* align-content: center; */
+  flex-direction: row;
+}
+
+.helploadeffect {
+  height: 100%;
+  width: 100%;
+  /* position: relative; */
+  display: flex;
+  /* border: thin solid; */
+  border-radius: 30px;
+  background-color: #eff6e0;
+  /* margin-left: 10%; */
+  /* margin-top: 3%; */
   /* flex-wrap: nowrap; */
   align-items: center;
   /* align-content: center; */
@@ -201,5 +232,11 @@ export default {
 .router {
   text-decoration: none;
   color: inherit;
+}
+
+.filter {
+    width: 40%;
+    margin: auto;
+    margin-top: 10px;
 }
 </style>

@@ -53,6 +53,11 @@ export default new Vuex.Store({
       if (userInfo) {
         state.userInfo = JSON.parse(userInfo);
       }
+
+      const allPosts = localStorage.getItem('allPosts');
+      if (allPosts) {
+        state.allPosts = JSON.parse(allPosts);
+      }
     },
 
     setuserdata(state, userInfo) {
@@ -74,6 +79,7 @@ export default new Vuex.Store({
 
     setallposts(state, tempInfo) {
       state.allPosts = tempInfo;
+      localStorage.setItem('allPosts', JSON.stringify(tempInfo));
     },
 
     setallcomments(state, tempInfo) {
@@ -83,6 +89,7 @@ export default new Vuex.Store({
     logout(state) {
       state.userInfo = null;
       localStorage.setItem('userInfo', null);
+      localStorage.setItem('allPosts', null);
     },
 
     setallpoststemporary(state, temporaryInfo) {
@@ -91,6 +98,13 @@ export default new Vuex.Store({
 
     addUserPostToAllPosts(state, temporaryInfo) {
       state.allPosts.unshift(temporaryInfo);
+      let existingPosts = JSON.parse(localStorage.getItem("allPosts"));
+      console.log(existingPosts)
+      localStorage.setItem("post", JSON.stringify(temporaryInfo));
+      existingPosts.unshift(temporaryInfo);
+      console.log(existingPosts)
+      localStorage.setItem("allPosts", JSON.stringify(existingPosts));
+      
     },
 
     addUserCommentToAllComments(state, temporaryInfo) {
@@ -107,7 +121,6 @@ export default new Vuex.Store({
       }).catch(err => {
         console.log(err.message)
       })
-      // debugger
       // console.log(usersInfo2.data);
     },
 

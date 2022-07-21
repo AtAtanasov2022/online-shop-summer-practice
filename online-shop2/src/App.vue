@@ -1,18 +1,18 @@
 <template>
   <v-app style="background-color: white">
-    <div class="navbar">
-      <img
-        alt="MyFacebookLogo"
-        src="./assets/facebook-svgrepo-com.svg"
-        style="
+    <Loader v-if="!isLoaded"></Loader>
+    <div class="navbar" v-if="isLoaded">
+      <router-link to="/" style="
           width: 3%;
           height: 80%;
           display: flex;
           justify-content: flex-start;
           margin-right: 67%;
           border-radius: 100px;
-        "
-      />
+        "><img
+        alt="MyFacebookLogo"
+        src="./assets/facebook-svgrepo-com.svg"
+      /></router-link>
 
       <router-link class="login" to="/login" v-if="!user">Login</router-link>
       <router-link class="login" to="/registration" v-if="!user"
@@ -43,14 +43,36 @@
       </router-link>
     </div>
 
-    <v-main style="display: flex; justifyContent: center; background-color: white;">
+    <v-main
+      v-if="isLoaded"
+      style="display: flex; justifycontent: center; background-color: white"
+    >
       <router-view :key="$router.path" />
     </v-main>
+
+    <v-footer v-if="isLoaded" color="primary lighten-1" padless>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          color="white"
+          text
+          rounded
+          class="my-2"
+        >
+          {{ link }}
+        </v-btn>
+        <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
+          {{ new Date().getFullYear() }} — <strong>MyFacebook</strong>
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 // import store from '@/store'
+import Loader from "./components/LoaderComponent.vue";
 
 import { mapGetters } from "vuex";
 import { mapState } from "vuex";
@@ -58,9 +80,20 @@ import { mapState } from "vuex";
 export default {
   name: "App",
 
+  components: {
+    Loader,
+  },
+
   data() {
     return {
       postFeed: false,
+      isLoaded: false,
+      links: [
+      'About Us',
+      'Team',
+      'Services',
+      'Contact Us',
+    ],
     };
   },
 
@@ -68,6 +101,16 @@ export default {
     logout() {
       this.$store.dispatch("logout");
     },
+  },
+
+  mounted() {
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        setTimeout(() => {
+          this.isLoaded = true;
+        }, 1000);
+      }
+    };
   },
 
   computed: {
@@ -83,7 +126,7 @@ export default {
 
 <style scoped>
 .navbar {
-  height: 5%;
+  height: 50px;
   width: 100%;
   background-color: #124559;
   position: relative;
@@ -91,6 +134,17 @@ export default {
   justify-content: flex-end;
   align-items: center;
   text-decoration: none;
+}
+
+.v-application .primary.lighten-1 {
+    background-color: #124559 !important;
+    border-color: #124559 !important;
+    margin-top: 20px;
+}
+
+.v-application .primary.lighten-2 {
+    background-color: #598392 !important;
+    border-color: #598392 !important;
 }
 
 .logo {

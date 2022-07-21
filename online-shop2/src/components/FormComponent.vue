@@ -1,5 +1,6 @@
 <template>
-  <div class="form">
+  <Loader v-if="!isLoaded"></Loader>
+  <div class="form" v-else>
     <validation-observer ref="observer" v-slot="{ invalid }">
       <form @submit.prevent="submit">
         <validation-provider
@@ -158,6 +159,7 @@ import {
   setInteractionMode,
 } from "vee-validate";
 import store from "@/store";
+import Loader from "../components/LoaderComponent.vue";
 
 setInteractionMode("eager");
 extend("digits", {
@@ -185,6 +187,7 @@ export default {
   components: {
     ValidationProvider,
     ValidationObserver,
+    Loader
   },
   props: {
     registrationPage: {
@@ -205,7 +208,13 @@ export default {
     items: ["Item 1", "Item 2", "Item 3", "Item 4"],
     checkbox: null,
     checkbox2: null,
+    isLoaded: false
   }),
+
+  mounted() {
+    setTimeout(() => {  this.isLoaded = true; }, 800);
+  },
+
   methods: {
     submit() {
       // this.$refs.observer.validate()
