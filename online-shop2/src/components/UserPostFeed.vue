@@ -1,11 +1,11 @@
 <template>
   <div class="postfeed" v-if="posts">
     <h2>User's Posts</h2>
-    <div class="post" v-for="(post,index) in posts" :key="post.id">
+    <div class="post" v-for="(post, index) in posts" :key="post.id">
       <img
-          :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
-          class="image"
-    />
+        :src="`https://xsgames.co/randomusers/assets/avatars/male/${index}.jpg`"
+        class="image"
+      />
       <router-link
         class="paragraph1"
         :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
@@ -53,7 +53,7 @@ export default {
 <style scoped>
 .postfeed {
   height: 100%;
-  width: 70%;
+  width: 90%;
   display: flex;
   border-radius: 71px;
   background-color: white;
@@ -66,13 +66,13 @@ export default {
 }
 
 .post {
-  height: 200px;
+  height: fit-content;
   width: 80%;
   position: relative;
   display: flex;
   border: thin solid;
   border-radius: 30px;
-  background-color: #EFF6E0;
+  background-color: #eff6e0;
   margin: auto;
   margin-top: 2%;
   font-weight: 100;
@@ -89,8 +89,8 @@ export default {
 }
 
 .image {
-  height: 30%;
-  width: 7%;
+  height: 60px;
+  width: 60px;
   border-radius: 30px;
   margin: 1%;
   border: thin solid;
