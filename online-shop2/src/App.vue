@@ -49,11 +49,11 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             color="primary"
-            style="background-color: #598392"
+            style="background-color: #598392 !important"
             v-bind="attrs"
             v-on="on"
           >
-            Dropdown
+            <img alt="MyFacebookLogo" src="./assets/hamburger-menu-more-2-svgrepo-com.svg">
           </v-btn>
         </template>
         <v-list>
