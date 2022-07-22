@@ -15,7 +15,6 @@
     </p>
 
     <div class="commentSection">
-      <p class="contentTemporary">Text area for adding comp</p>
       <CommentsFeed :postId="id"> </CommentsFeed>
     </div>
   </div>
@@ -88,6 +87,9 @@ export default {
 
 .commentSection {
   flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
 }
 
 .image {
