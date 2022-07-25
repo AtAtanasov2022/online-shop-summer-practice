@@ -108,4 +108,38 @@ export default {
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 360px) and (max-height: 740px) {
+  .postfeed {
+    width: 100%;
+  }
+
+  .post {
+    width: 90%;
+    padding: 6px;
+  }
+
+  .filter {
+    width: 80%;
+  }
+
+  .image {
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    margin: 1%;
+    border: thin solid;
+  }
+
+  .div1 {
+    padding-left: 2%;
+  }
+
+  .div2 {
+    padding: 2% 3% !important;
+  }
+  .comments {
+    margin-left: 2%;
+  }
+}
 </style>
