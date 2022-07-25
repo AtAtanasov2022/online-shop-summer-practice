@@ -2,7 +2,7 @@
   <div class="postfeed" v-if="posts">
     <AddPostComponent></AddPostComponent>
     <v-expansion-panels focusable class="filter">
-      <v-expansion-panel @click="datePicker=true">
+      <v-expansion-panel @click="datePicker = true">
         <v-expansion-panel-header>Filter by date</v-expansion-panel-header>
         <v-expansion-panel-content>
           <v-date-picker
@@ -25,7 +25,7 @@
             class="image"
           />
           <router-link
-            class="paragraph1"
+            class="paragraph1 text-center"
             :to="{ name: 'singleuserpage', params: { id: post.author.id } }"
           >
             {{ post.author.firstname }} {{ post.author.lastname }}
@@ -235,8 +235,39 @@ export default {
 }
 
 .filter {
-    width: 40%;
-    margin: auto;
-    margin-top: 10px;
+  width: 40%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+@media (max-width: 360px) and (max-height: 740px) {
+  .postfeed {
+    width: 100%;
+  }
+
+  .post {
+    width: 90%;
+    padding: 1px;
+  }
+
+  .filter {
+    width: 80%;
+  }
+
+  .image {
+    height: 60px;
+    width: 60px;
+    border-radius: 20px;
+    margin: 1%;
+    border: thin solid;
+  }
+
+  .div1 {
+    padding-left: 2%;
+  }
+
+  .div2 {
+    padding: 1% 3% !important
+  }
 }
 </style>

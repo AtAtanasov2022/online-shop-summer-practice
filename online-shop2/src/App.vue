@@ -2,16 +2,7 @@
   <v-app style="background-color: white">
     <Loader v-if="!isLoaded"></Loader>
     <div class="navbar" v-if="isLoaded">
-      <router-link
-        to="/"
-        style="
-          width: 3%;
-          height: 80%;
-          display: flex;
-          justify-content: flex-start;
-          margin-right: 67%;
-          border-radius: 100px;
-        "
+      <router-link to="/" class="logorouter"
         ><img alt="MyFacebookLogo" src="./assets/facebook-svgrepo-com.svg"
       /></router-link>
 
@@ -49,11 +40,14 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             color="primary"
-            style="background-color: #598392 !important"
+            class="burgerbutton"
             v-bind="attrs"
             v-on="on"
           >
-            <img alt="MyFacebookLogo" src="./assets/hamburger-menu-more-2-svgrepo-com.svg">
+            <img
+              alt="MyFacebookLogo"
+              src="./assets/menu.svg"
+            />
           </v-btn>
         </template>
         <v-list>
@@ -124,7 +118,7 @@ export default {
       links: ["About Us", "Team", "Services", "Contact Us"],
       burgerMenu: false,
       width: document.documentElement.clientWidth,
-    height: document.documentElement.clientHeight
+      height: document.documentElement.clientHeight,
     };
   },
 
@@ -144,6 +138,10 @@ export default {
     },
   },
 
+  beforeMount() {
+    window.addEventListener("resize", this.changeWindowSize);
+  },
+
   mounted() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
@@ -152,12 +150,10 @@ export default {
         }, 1000);
       }
     };
-
-    window.addEventListener("resize", this.changeWindowSize);
   },
 
   unmounted() {
-    window.removeEventListener('', this.changeWindowSize);  
+    window.removeEventListener("", this.changeWindowSize);
   },
 
   computed: {
@@ -190,8 +186,17 @@ export default {
 }
 
 .v-application .primary.lighten-2 {
-  background-color: #598392 !important;
-  border-color: #598392 !important;
+  background-color: #124559 !important;
+  border-color: #124559 !important;
+}
+
+.logorouter {
+  width: 3%;
+  height: 80%;
+  display: flex;
+  justify-content: flex-start;
+  margin-right: 67%;
+  border-radius: 100px;
 }
 
 .logo {
@@ -227,6 +232,31 @@ export default {
   color: whitesmoke;
   font-size: 1vw;
   justify-content: center;
+}
+
+.burgerbutton {
+  background-color: #124559 !important;
+  margin-right: 2%;
+}
+
+.v-btn:not(.v-btn--round).v-size--default {
+    height: 36px;
+    min-width: 64px;
+    padding: 0 16px;
+    background-color: #124559 !important;
+}
+
+@media (max-width: 1100px) {
+  .logorouter {
+    margin-right: 80% !important;
+  }
+}
+
+/* Samsung galaxy s8 */
+@media (max-width: 360px) and (max-height: 740px) {
+  .logorouter {
+    margin-right: 70% !important;
+  }
 }
 
 /* .logintwo,
