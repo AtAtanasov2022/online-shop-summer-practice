@@ -7,7 +7,7 @@
       />
       <p class="paragraph1">{{ userInfo.firstname }} {{ userInfo.lastname }}</p>
     </div>
-    <div class="emaillink">
+    <div class="emaillink text-center">
       <p class="email">Email: {{ userInfo.email }}</p>
       <router-link
         :to="{
@@ -51,7 +51,7 @@ export default {
   display: flex;
   border: thin solid;
   border-radius: 20px;
-  background-color: #EFF6E0;
+  background-color: #eff6e0;
   margin: auto;
   margin-top: 50px;
   /* flex-wrap: wrap; */
@@ -60,7 +60,7 @@ export default {
   flex-direction: row;
 }
 .imageparagraph {
-  width: 30%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,5 +103,42 @@ export default {
   text-decoration: none;
   color: inherit;
   font-size: 1.3vw;
+}
+
+@media (max-width: 360px) and (max-height: 740px) {
+  .profilePage {
+    min-height: 300px;
+    width: 70%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .imageparagraph {
+    margin-top: 20px;
+  }
+  .image {
+    height: 130px;
+    width: 130px;
+  }
+  .emaillink {
+    width: 80%;
+    margin-top: 20px;
+  }
+  .paragraph1 {
+    margin-top: 3px !important;
+    font-size: 5.5vw;
+  }
+  .email {
+    font-size: 3.5vw;
+    width: 100%;
+    margin: 0;
+  }
+  .router {
+    margin-top: 24px;
+    font-size: 4.5vw;
+  }
 }
 </style>
