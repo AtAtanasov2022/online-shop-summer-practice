@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       user: store.getters.getUserInfo,
-      id: null
+      id: null,
     };
   },
 
@@ -52,7 +52,7 @@ export default {
     // }),
   },
   beforeDestroy() {
-      this.$store.dispatch("clearPostData", null)
+    this.$store.dispatch("clearPostData", null);
   },
 
   async beforeMount() {
@@ -108,10 +108,29 @@ export default {
 .content {
   margin: 1%;
   font-size: 1.3vw;
+  word-break: break-word;
 }
 
 .contentTemporary {
   width: 100%;
   margin-left: 5%;
+}
+
+@media (max-width: 360px) and (max-height: 740px) {
+  .content {
+    margin: auto;
+    margin-top: 5px;
+    font-size: 16px;
+  }
+
+  .image {
+    height: 85px;
+    width: 85px;
+  }
+
+  .paragraph1 {
+    font-size: 22px;
+    margin: auto;
+  }
 }
 </style>

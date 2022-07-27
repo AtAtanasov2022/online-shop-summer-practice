@@ -129,6 +129,11 @@ export default {
   flex-direction: column;
 }
 
+.v-application .primary {
+  background-color: #124559 !important;
+  border-color: #124559 !important;
+}
+
 .picker {
   margin: auto;
   display: flex;
@@ -222,6 +227,7 @@ export default {
 .content {
   width: 100%;
   height: 30%;
+  word-break: break-word;
   /* padding: 2% 3% 0%; */
 }
 
@@ -267,7 +273,16 @@ export default {
   }
 
   .div2 {
-    padding: 1% 3% !important
+    padding: 1% 3% !important;
+    font-size: 16px;
+  }
+
+  .paragraph1 {
+    font-size: 16px;
+  }
+
+  .content {
+    font-size: 16px;
   }
 }
 </style>

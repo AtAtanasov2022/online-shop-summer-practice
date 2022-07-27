@@ -195,7 +195,9 @@ export default new Vuex.Store({
       }).then(response => {
         console.log(response)
         context.commit('setallpoststemporary', response.data)
-      })
+      }).catch (err => {
+        console.log(err.message)}
+      )
     },
 
     addPost(context, postContent) {

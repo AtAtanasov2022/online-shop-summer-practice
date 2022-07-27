@@ -26,12 +26,12 @@
 export default {
   name: "AddCommentComponent",
 
-    props: {
-        Id: {
-            type: String,
-            required: true
-        }
+  props: {
+    Id: {
+      type: String,
+      required: true,
     },
+  },
 
   data() {
     return {
@@ -60,7 +60,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .commentadd {
   /* padding: 20px; */
   height: fit-content;
@@ -86,4 +86,21 @@ export default {
   align-self: center;
 }
 
+@media (max-width: 360px) and (max-height: 740px) {
+  .commentadd {
+    height: fit-content;
+    width: 80%;
+    margin: auto;
+    margin-top: 5px !important;
+    display: flex;
+    border-radius: 30px;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .v-input__control .v-text-field__details {
+    margin-bottom: 30px;
+    display: none !important;
+  }
+}
 </style>

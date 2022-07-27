@@ -1,32 +1,35 @@
 <template>
   <div class="commentfeed" v-if="comments.length > 0">
-    <AddComment :Id=postId></AddComment>
+    <AddComment :Id="postId"></AddComment>
     <div class="comment" v-for="comment in comments" :key="comment.id">
-      <img
-        :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
-        class="image"
-      />
-      <p class="paragraph1">
-        {{ comment.author.username }}
-      </p>
-      <!--Should be a link-->
-      <p class="content">
-        Content<br />
-        {{ comment.comment }}
-      </p>
+      <div class="div1">
+        <img
+          :src="`https://xsgames.co/randomusers/assets/avatars/male/${pictureId}.jpg`"
+          class="image"
+        />
+        <p class="paragraph1">
+          {{ comment.author.username }}
+        </p>
+      </div>
+      <div class="div2">
+        <p class="content">
+          Content<br />
+          {{ comment.comment }}
+        </p>
 
-      <p class="content">Date: {{ comment.commented_at }}</p>
+        <p class="content">Date: {{ comment.commented_at }}</p>
+      </div>
     </div>
   </div>
   <div v-else>
-    <AddComment :Id=postId></AddComment>
-    <p class="content">No comments</p>
+    <AddComment :Id="postId"></AddComment>
+    <p class="content2">No comments</p>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import AddComment from "../components/AddComment.vue"
+import AddComment from "../components/AddComment.vue";
 
 export default {
   name: "CommentsFeed",
@@ -39,7 +42,7 @@ export default {
   },
 
   components: {
-    AddComment
+    AddComment,
   },
 
   computed: {
@@ -57,7 +60,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .commentfeed {
   height: fit-content;
   width: 90%;
@@ -100,10 +103,50 @@ export default {
 
 .content {
   margin-left: 5%;
+  word-break: break-word;
 }
 
 .router {
   text-decoration: none;
   color: inherit;
+}
+
+@media (max-width: 360) and (max-height: 740px) {
+  .content[data-v-eb82ee3c] {
+    display: flex;
+    margin-top: 15px;
+    justify-content: center;
+    word-break: break-word;
+  }
+
+  .content2 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-content: center !important;
+    align-items: center !important;
+  }
+
+  /* .v-application p {
+    margin-bottom: 5px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-content: center !important;
+    align-items: center !important;
+    margin-top: 5px;
+  } */
+
+  p.content2 {
+    margin-bottom: 5px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-content: center !important;
+    align-items: center !important;
+    margin-top: 5px;
+  }
+
+  .comment {
+    height: fit-content;
+    width: 95%;
+  }
 }
 </style>

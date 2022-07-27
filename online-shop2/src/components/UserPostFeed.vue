@@ -26,6 +26,9 @@
       <p class="comments">Comments: {{ post.comments_count }}</p>
     </div>
   </div>
+  <div v-else>
+    <h1>No posts!</h1>
+  </div>
 </template>
 
 <script>
@@ -98,6 +101,7 @@ export default {
 
 .content {
   margin-left: 2%;
+  word-break: break-word;
 }
 
 .comments {

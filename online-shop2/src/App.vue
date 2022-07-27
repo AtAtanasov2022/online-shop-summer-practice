@@ -77,7 +77,7 @@
       <router-view :key="$router.path" />
     </v-main>
 
-    <v-footer v-if="isLoaded" color="primary lighten-1" padless>
+    <v-footer v-if="isLoaded" class="mt-3" padless>
       <v-row justify="center" no-gutters>
         <v-btn
           v-for="link in links"
@@ -89,7 +89,7 @@
         >
           {{ link }}
         </v-btn>
-        <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
+        <v-col class="py-4 text-center white--text" cols="12">
           {{ new Date().getFullYear() }} — <strong>MyFacebook</strong>
         </v-col>
       </v-row>
@@ -143,6 +143,7 @@ export default {
   },
 
   mounted() {
+    this.changeWindowSize();
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
         setTimeout(() => {
@@ -153,7 +154,7 @@ export default {
   },
 
   unmounted() {
-    window.removeEventListener("", this.changeWindowSize);
+    window.removeEventListener("resize", this.changeWindowSize);
   },
 
   computed: {
@@ -167,7 +168,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .navbar {
   height: 50px;
   width: 100%;
@@ -179,15 +180,20 @@ export default {
   text-decoration: none;
 }
 
-.v-application .primary.lighten-1 {
-  background-color: #124559 !important;
-  border-color: #124559 !important;
-  margin-top: 20px;
+.v-card > *:first-child:not(.v-btn):not(.v-chip):not(.v-avatar), .v-card > .v-card__progress + *:not(.v-btn):not(.v-chip):not(.v-avatar) {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    background: #124559 !important;
+}
+
+.row.no-gutters {
+    margin: 0;
+    background: #124559 !important;
 }
 
 .v-application .primary.lighten-2 {
-  background-color: #124559 !important;
-  border-color: #124559 !important;
+    background-color: #124559 !important;
+    border-color: #124559 !important;
 }
 
 .logorouter {
@@ -244,6 +250,8 @@ export default {
     min-width: 64px;
     padding: 0 16px;
     background-color: #124559 !important;
+    color: white; 
+    margin-right: 5px;
 }
 
 @media (max-width: 1100px) {
@@ -256,6 +264,10 @@ export default {
 @media (max-width: 360px) and (max-height: 740px) {
   .logorouter {
     margin-right: 70% !important;
+  }
+
+  .v-picker__body {
+    width: 240px !important;
   }
 }
 
