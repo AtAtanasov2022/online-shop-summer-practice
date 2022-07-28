@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  <div v-else>
+  <div class="nocomment" v-else>
     <AddComment :Id="postId"></AddComment>
     <p class="content2">No comments</p>
   </div>
@@ -60,7 +60,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .commentfeed {
   height: fit-content;
   width: 90%;
@@ -119,34 +119,23 @@ export default {
     word-break: break-word;
   }
 
-  .content2 {
-    display: flex !important;
-    flex-direction: column !important;
-    align-content: center !important;
-    align-items: center !important;
-  }
-
-  /* .v-application p {
-    margin-bottom: 5px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-content: center !important;
-    align-items: center !important;
-    margin-top: 5px;
-  } */
-
-  p.content2 {
-    margin-bottom: 5px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-content: center !important;
-    align-items: center !important;
-    margin-top: 5px;
-  }
-
   .comment {
     height: fit-content;
     width: 95%;
+  }
+
+  .nocomment {
+    display: flex !important;
+    flex-direction: column !important;
+    align-content: center !important;
+    align-items: center !important;
+  }
+
+  .image {
+    height: 1000px;
+    width: 30px;
+    border-radius: 30px;
+    border: thin solid;
   }
 }
 </style>

@@ -264,4 +264,12 @@ export default {
   width: 35%;
   margin-top: 50px;
 }
+
+@media (max-width: 360px) and (max-height: 740px) {
+  .form {
+    margin: auto;
+    width: 60%;
+    margin-top: 40px;
+  }
+}
 </style>

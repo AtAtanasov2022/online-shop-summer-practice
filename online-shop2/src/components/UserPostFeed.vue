@@ -78,8 +78,6 @@ export default {
   background-color: #eff6e0;
   margin: auto;
   margin-top: 2%;
-  font-weight: 100;
-  font-weight: 100;
   flex-wrap: wrap;
   align-items: center;
   align-content: center;

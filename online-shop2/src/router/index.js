@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginPage from '../views/LoginPage.vue'
 import RegistrationPage from '../views/RegistrationPage.vue'
-import LogOut from '../views/LogOut.vue'
 import PostPage from '../components/PostPage.vue'
 import UserProfilePage from '../components/UserProfilePage.vue'
 import UserPostFeed from '../components/UserPostFeed.vue'
@@ -29,7 +28,7 @@ const routes = [
   {
     path: '/logout',
     name: 'logout',
-    component: LogOut
+    component: HomeView
   },
   {
     path: '/posts/:id',
