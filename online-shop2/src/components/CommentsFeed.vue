@@ -131,7 +131,7 @@ export default {
     align-items: center !important;
   }
 
-  .image {
+  .image[data-v-eb82ee3c] {
     height: 1000px;
     width: 30px;
     border-radius: 30px;

@@ -6,6 +6,7 @@ import RegistrationPage from '../views/RegistrationPage.vue'
 import PostPage from '../components/PostPage.vue'
 import UserProfilePage from '../components/UserProfilePage.vue'
 import UserPostFeed from '../components/UserPostFeed.vue'
+import TableComponent from '../components/TableComponent.vue'
 
 Vue.use(VueRouter)
 
@@ -44,6 +45,11 @@ const routes = [
     path: '/user/:username/posts',
     name: 'singleuserfeed',
     component: UserPostFeed
+  },
+  {
+    path: '/table',
+    name: 'poststable',
+    component: TableComponent
   },
 ]
 

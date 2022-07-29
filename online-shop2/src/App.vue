@@ -33,6 +33,9 @@
           style="text-decoration: none; color: whitesmoke; font-size: 1vw"
           >Home
         </router-link>
+        <router-link class="login" to="/table" style="text-decoration: none; color: whitesmoke; font-size: 1vw" v-if="!burgerMenu"
+          >Table</router-link
+        >
         <router-link
           v-if="user && !burgerMenu"
           class="login"
@@ -58,6 +61,9 @@
             </v-list-item>
             <v-list-item to="/">
               <v-list-item-title>Home</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/table">
+              <v-list-item-title>Table</v-list-item-title>
             </v-list-item>
             <v-list-item v-if="!user" to="/login">
               <v-list-item-title>Login</v-list-item-title>
@@ -185,22 +191,22 @@ export default {
 }
 
 .logoposition {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-  }
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
 
-  .menuposition {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-  }
+.menuposition {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
 
 .v-card > *:first-child:not(.v-btn):not(.v-chip):not(.v-avatar),
 .v-card > .v-card__progress + *:not(.v-btn):not(.v-chip):not(.v-avatar) {

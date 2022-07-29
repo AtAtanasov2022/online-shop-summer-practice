@@ -14,6 +14,7 @@ export default new Vuex.Store({
     userTempInfo: {},
     postTempInfo: null,
     allPosts: [],
+    allPosts2: [],
     allComments: [],
     allPostsById:[],
     postsByDate:[]
@@ -39,6 +40,10 @@ export default new Vuex.Store({
       return state.allPosts;
     },
 
+    getAllPosts2(state) {
+      return state.allPosts2;
+    },
+
     getAllComments(state) {
       return state.allComments;
     },
@@ -57,6 +62,11 @@ export default new Vuex.Store({
       const allPosts = localStorage.getItem('allPosts');
       if (allPosts) {
         state.allPosts = JSON.parse(allPosts);
+      }
+
+      const allPosts2 = localStorage.getItem('allPosts2');
+      if (allPosts2) {
+        state.allPosts2 = JSON.parse(allPosts2);
       }
     },
 
@@ -80,6 +90,11 @@ export default new Vuex.Store({
     setallposts(state, tempInfo) {
       state.allPosts = tempInfo;
       localStorage.setItem('allPosts', JSON.stringify(tempInfo));
+    },
+
+    setallposts2(state, tempInfo) {
+      state.allPosts2 = tempInfo;
+      localStorage.setItem('allPosts2', JSON.stringify(tempInfo));
     },
 
     setallcomments(state, tempInfo) {
@@ -169,6 +184,17 @@ export default new Vuex.Store({
       }).then(response => {
         console.log(response)
         context.commit('setallposts', response.data)
+      })
+    },
+
+    getAllPostsInfo(context) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts', {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        }
+      }).then(response => {
+        console.log(response)
+        context.commit('setallposts2', response.data)
       })
     },
 
