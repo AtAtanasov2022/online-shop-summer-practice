@@ -1,5 +1,6 @@
 <template>
-  <v-data-table v-if="posts"
+  <v-data-table
+    v-if="posts"
     :headers="headers"
     :items="filteredPosts"
     :items-per-page="5"
@@ -45,185 +46,58 @@ export default {
           value: "authorUsername",
         },
       ],
-      desserts: [
-        {
-          id: "1",
-          content: "Something1",
-          createdAt: "2222-12-22",
-          authorUsername: "black1",
-        },
-        {
-          id: "2",
-          content: "Something2",
-          createdAt: "2222-12-23",
-          authorUsername: "black2",
-        },
-        {
-          id: "3",
-          content: "Something3",
-          createdAt: "2222-12-24",
-          authorUsername: "black3",
-        },
-        {
-          id: "4",
-          content: "Something4",
-          createdAt: "2222-12-25",
-          authorUsername: "black4",
-        },
-        {
-          id: "1",
-          content: "Something1",
-          createdAt: "2222-12-22",
-          authorUsername: "black1",
-        },
-        {
-          id: "2",
-          content: "Something2",
-          createdAt: "2222-12-23",
-          authorUsername: "black2",
-        },
-        {
-          id: "3",
-          content: "Something3",
-          createdAt: "2222-12-24",
-          authorUsername: "black3",
-        },
-        {
-          id: "4",
-          content: "Something4",
-          createdAt: "2222-12-25",
-          authorUsername: "black4",
-        },
-        {
-          id: "1",
-          content: "Something1",
-          createdAt: "2222-12-22",
-          authorUsername: "black1",
-        },
-        {
-          id: "2",
-          content: "Something2",
-          createdAt: "2222-12-23",
-          authorUsername: "black2",
-        },
-        {
-          id: "3",
-          content: "Something3",
-          createdAt: "2222-12-24",
-          authorUsername: "black3",
-        },
-        {
-          id: "4",
-          content: "Something4",
-          createdAt: "2222-12-25",
-          authorUsername: "black4",
-        },
-        {
-          id: "1",
-          content: "Something1",
-          createdAt: "2222-12-22",
-          authorUsername: "black1",
-        },
-        {
-          id: "2",
-          content: "Something2",
-          createdAt: "2222-12-23",
-          authorUsername: "black2",
-        },
-        {
-          id: "3",
-          content: "Something3",
-          createdAt: "2222-12-24",
-          authorUsername: "black3",
-        },
-        {
-          id: "4",
-          content: "Something4",
-          createdAt: "2222-12-25",
-          authorUsername: "black4",
-        },
-        {
-          id: "1",
-          content: "Something1",
-          createdAt: "2222-12-22",
-          authorUsername: "black1",
-        },
-        {
-          id: "2",
-          content: "Something2",
-          createdAt: "2222-12-23",
-          authorUsername: "black2",
-        },
-        {
-          id: "3",
-          content: "Something3",
-          createdAt: "2222-12-24",
-          authorUsername: "black3",
-        },
-        {
-          id: "4",
-          content: "Something4",
-          createdAt: "2222-12-25",
-          authorUsername: "black4",
-        },
-        {
-          id: "1",
-          content: "Something1",
-          createdAt: "2222-12-22",
-          authorUsername: "black1",
-        },
-        {
-          id: "2",
-          content: "Something2",
-          createdAt: "2222-12-23",
-          authorUsername: "black2",
-        },
-        {
-          id: "3",
-          content: "Something3",
-          createdAt: "2222-12-24",
-          authorUsername: "black3",
-        },
-        {
-          id: "4",
-          content: "Something4",
-          createdAt: "2222-12-25",
-          authorUsername: "black4",
-        },
-      ],
     };
   },
 
   computed: {
-        // ...mapGetters({
-        //   posts: "getAllPosts2",
-        // }),
+    // ...mapGetters({
+    //   posts: "getAllPosts2",
+    // }),
 
-        ...mapState({
-          posts: (state) =>  state.allPosts2,
-        }),
-      },
+    ...mapState({
+      posts: (state) => state.allPosts2,
+    }),
+  },
 
-      beforeMount() {
-        this.$store.dispatch("getAllPostsInfo");
-        
-        let id = 1;
-        this.posts.forEach(element => {
-          let temporartObject = {
-            id: id,
-            content: element.post,
-            createdAt: element.created_at,
-            authorUsername: element.author.username
-          };
-          id++;
-          this.filteredPosts.push(temporartObject)
-        });
+  beforeMount() {
+    this.$store.dispatch("getAllPostsInfo");
 
-        // console.log(this.filteredPosts);
-      },
+    let id = 1;
+    this.posts.forEach((element) => {
+      let temporartObject = {
+        id: id,
+        content: element.post,
+        createdAt: element.created_at,
+        authorUsername: element.author.username,
+      };
+      id++;
+      this.filteredPosts.push(temporartObject);
+    });
 
-      methods: {},
+    // console.log(this.filteredPosts);
+  },
+
+  methods: {},
 };
 </script>
 
-<style scoped></style>
+<style>
+@media (max-width: 360px) and (max-height: 740px) {
+  .v-data-table > .v-data-table__wrapper .v-data-table__mobile-table-row {
+    border-top: thin solid !important;
+    display: initial;
+  }
+
+  .theme--light.v-data-table {
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    border: thin solid;
+    border-radius: 10px;
+  }
+  
+  .theme--light.v-data-table .v-data-footer {
+    border-top: thin solid !important;
+  }
+}
+</style>
