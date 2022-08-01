@@ -1,7 +1,7 @@
 <template>
-  <v-data-table
+  <v-data-table v-if="posts"
     :headers="headers"
-    :items="desserts"
+    :items="filteredPosts"
     :items-per-page="5"
     item-key="name"
     class="elevation-1"
@@ -25,6 +25,7 @@ export default {
 
   data() {
     return {
+      filteredPosts: [],
       headers: [
         {
           text: "Post",
@@ -69,25 +70,159 @@ export default {
           createdAt: "2222-12-25",
           authorUsername: "black4",
         },
+        {
+          id: "1",
+          content: "Something1",
+          createdAt: "2222-12-22",
+          authorUsername: "black1",
+        },
+        {
+          id: "2",
+          content: "Something2",
+          createdAt: "2222-12-23",
+          authorUsername: "black2",
+        },
+        {
+          id: "3",
+          content: "Something3",
+          createdAt: "2222-12-24",
+          authorUsername: "black3",
+        },
+        {
+          id: "4",
+          content: "Something4",
+          createdAt: "2222-12-25",
+          authorUsername: "black4",
+        },
+        {
+          id: "1",
+          content: "Something1",
+          createdAt: "2222-12-22",
+          authorUsername: "black1",
+        },
+        {
+          id: "2",
+          content: "Something2",
+          createdAt: "2222-12-23",
+          authorUsername: "black2",
+        },
+        {
+          id: "3",
+          content: "Something3",
+          createdAt: "2222-12-24",
+          authorUsername: "black3",
+        },
+        {
+          id: "4",
+          content: "Something4",
+          createdAt: "2222-12-25",
+          authorUsername: "black4",
+        },
+        {
+          id: "1",
+          content: "Something1",
+          createdAt: "2222-12-22",
+          authorUsername: "black1",
+        },
+        {
+          id: "2",
+          content: "Something2",
+          createdAt: "2222-12-23",
+          authorUsername: "black2",
+        },
+        {
+          id: "3",
+          content: "Something3",
+          createdAt: "2222-12-24",
+          authorUsername: "black3",
+        },
+        {
+          id: "4",
+          content: "Something4",
+          createdAt: "2222-12-25",
+          authorUsername: "black4",
+        },
+        {
+          id: "1",
+          content: "Something1",
+          createdAt: "2222-12-22",
+          authorUsername: "black1",
+        },
+        {
+          id: "2",
+          content: "Something2",
+          createdAt: "2222-12-23",
+          authorUsername: "black2",
+        },
+        {
+          id: "3",
+          content: "Something3",
+          createdAt: "2222-12-24",
+          authorUsername: "black3",
+        },
+        {
+          id: "4",
+          content: "Something4",
+          createdAt: "2222-12-25",
+          authorUsername: "black4",
+        },
+        {
+          id: "1",
+          content: "Something1",
+          createdAt: "2222-12-22",
+          authorUsername: "black1",
+        },
+        {
+          id: "2",
+          content: "Something2",
+          createdAt: "2222-12-23",
+          authorUsername: "black2",
+        },
+        {
+          id: "3",
+          content: "Something3",
+          createdAt: "2222-12-24",
+          authorUsername: "black3",
+        },
+        {
+          id: "4",
+          content: "Something4",
+          createdAt: "2222-12-25",
+          authorUsername: "black4",
+        },
       ],
+    };
+  },
 
-      computed: {
+  computed: {
         // ...mapGetters({
         //   posts: "getAllPosts2",
         // }),
 
         ...mapState({
-          posts: (state) => state.allPosts2,
+          posts: (state) =>  state.allPosts2,
         }),
       },
 
       beforeMount() {
         this.$store.dispatch("getAllPostsInfo");
+        
+        let id = 1;
+        this.posts.forEach(element => {
+          let temporartObject = {
+            id: id,
+            content: element.post,
+            createdAt: element.created_at,
+            authorUsername: element.author.username
+          };
+          id++;
+          this.filteredPosts.push(temporartObject)
+        });
+
+        // console.log(this.filteredPosts);
       },
 
       methods: {},
-    };
-  },
 };
 </script>
 
