@@ -4,6 +4,7 @@
       <v-select
         class="filter"
         v-model="filterInput1"
+        @change="filterInput1change"
         :items="names"
         chips
         label="Names"
@@ -13,6 +14,7 @@
       <v-select
         class="filter2"
         v-model="filterInput2"
+        @change="filterInput2change"
         :items="dates"
         chips
         label="Created at"
@@ -24,7 +26,7 @@
     <v-data-table
       v-if="posts"
       :headers="headers"
-      :items="filteredPosts"
+      :items="posts"
       :items-per-page="5"
       item-key="name"
       class="elevation-1"
@@ -41,6 +43,7 @@
 </template>
 
 <script>
+//:items="filteredPosts"
 // import mapGetters  from "vuex";
 import { mapState } from "vuex";
 
@@ -49,7 +52,6 @@ export default {
 
   data() {
     return {
-      filteredPosts: [],
       headers: [
         {
           text: "Post",
@@ -58,15 +60,15 @@ export default {
         },
         {
           text: "Content",
-          value: "content",
+          value: "post",
         },
         {
           text: "Created at",
-          value: "createdAt",
+          value: "created_at",
         },
         {
           text: "Author",
-          value: "authorUsername",
+          value: "author.username",
         },
       ],
       names: [],
@@ -84,29 +86,12 @@ export default {
     ...mapState({
       posts: (state) => state.allPosts2,
     }),
-
-    filterInput1change() {
-      return this.filterInput1;
-    },
-
-    filterInput2change() {
-      return this.filterInput2;
-    },
   },
 
   beforeMount() {
     this.$store.dispatch("getAllPostsInfo");
 
-    let id = 1;
     this.posts.forEach((element) => {
-      let temporartObject = {
-        id: id,
-        content: element.post,
-        createdAt: element.created_at,
-        authorUsername: element.author.username,
-      };
-      id++;
-      this.filteredPosts.push(temporartObject);
       this.names.push(element.author.username);
       this.dates.push(element.created_at);
     });
@@ -114,7 +99,28 @@ export default {
     // console.log(this.filteredPosts);
   },
 
-  methods: {},
+  methods: {
+    filterInput1change() {
+      let querryParameter = "author.username=";
+
+      this.filterInput1.forEach(element => {
+        console.log(element);
+        querryParameter = querryParameter + element + "&";
+      });
+
+      this.$store.dispatch("getFilteredPostUsername", querryParameter);
+
+      // this.$forceUpdate();
+      // console.log(this.filterInput1)
+      // console.log(this.filterInput1.length)
+      return "";
+    },
+
+    filterInput2change() {
+      console.log(this.filterInput2[0])
+      return this.filterInput2;
+    },
+  },
 };
 </script>
 

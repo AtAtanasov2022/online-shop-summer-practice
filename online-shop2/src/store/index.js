@@ -265,6 +265,28 @@ export default new Vuex.Store({
         console.log(response)
         context.commit('setallposts', response.data)
       })
+    },
+
+    getFilteredPostUsername(context, parameter) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/?' + parameter, {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        }
+      }).then(response => {
+        console.log(response)
+        context.commit('setallposts2', response.data)
+      })
+    },
+
+    getFilteredPostCreatedAt(context, parameter) {
+      axios.get('https://vue-social-network-api.herokuapp.com/api/posts/?' + parameter, {
+        headers: {
+          "Authorization": "MTU2Njk3NjQwNTMzNw=="
+        }
+      }).then(response => {
+        console.log(response)
+        context.commit('setallposts2', response.data)
+      })
     }
   },
   modules: {
